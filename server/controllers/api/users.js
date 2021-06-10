@@ -8,6 +8,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 module.exports = {
   create,
   login,
+  verifyToken,
 };
 
 async function create(req, res) {
@@ -29,3 +30,4 @@ async function create(req, res) {
 }
 
 async function login(req, res) {}
+async function verifyToken(req, res) {}
