@@ -5,6 +5,7 @@ const logger = require('morgan');
 require('dotenv').config();
 require('./config/database');
 const userRouter = require('./routes/api/users');
+const reportRouter = require('./routes/api/reports');
 const app = express();
 
 app.use(logger('dev'));
@@ -23,6 +24,7 @@ app.listen(port, function () {
 
 // catch all route
 app.use('/api/users/', userRouter);
+app.use('/api/reports/', reportRouter);
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });

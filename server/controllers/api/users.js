@@ -35,13 +35,12 @@ async function create(req, res) {
 
 async function login(req, res) {
   try {
-    console.log(req.body.password);
-    const user = await User.find({ email: req.body.email });
+    const user = await User.findOne({ email: req.body.email });
     if (!user)
       return res.status(400).json({ msg: 'Invalid Email or Password' });
     if (!(await bcrypt.compare(req.body.password, user.password)))
       return res.status(400).json({ msg: 'Invalid Email or Password' });
-    const token = jwt.sign({ user }, JWT_SECRET, { expiresIn: '12h' });
+    const token = jwt.sign({ user }, JWT_SECRET, { expiresIn: '10h' });
     res.status(200).json(token);
   } catch (e) {
     res
@@ -57,6 +56,6 @@ async function verifyToken(req, res) {
     if (err) {
       return res.status(401).json({ verified: false });
     }
-    res.status(200).json(decoded.user);
+    res.status(200).json({ verified: false });
   });
 }
