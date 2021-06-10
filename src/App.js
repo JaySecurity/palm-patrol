@@ -6,9 +6,11 @@ import Comments from "./components/Comments/Comments";
 import EventCategories from "./components/EventCategories/EventCategories";
 import EventDetail from "./components/EventDetail/EventDetail";
 import EventList from "./components/EventList/EventList";
+import AddAlarmIcon from "@material-ui/icons/AddAlarm";
 function App() {
   return (
     <main className="App">
+      <header></header>
       App
       <SignUp />
       <Login />
@@ -17,6 +19,9 @@ function App() {
       <EventCategories />
       <EventDetail />
       <EventList />
+      <nav>
+        <AddAlarmIcon />
+      </nav>
     </main>
   );
 }
