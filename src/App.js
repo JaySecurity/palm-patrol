@@ -1,13 +1,10 @@
-import "./App.css";
-import SignUp from "./components/SignUp/SignUp";
-import Login from "./components/Login/Login";
+import './App.css';
+import Leaflet from './components/Map/Map';
 
 function App() {
   return (
-    <main className="App">
-      App
-      <SignUp />
-      <Login />
+    <main className='App'>
+      <Leaflet />
     </main>
   );
 }
