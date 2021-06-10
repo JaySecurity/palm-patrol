@@ -3,7 +3,8 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 require('dotenv').config();
-
+require('./config/database');
+const userRouter = require('./routes/api/users');
 const app = express();
 
 app.use(logger('dev'));
@@ -21,6 +22,7 @@ app.listen(port, function () {
 });
 
 // catch all route
+app.use('/api/users/', userRouter);
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
