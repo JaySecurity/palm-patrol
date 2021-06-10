@@ -1,5 +1,13 @@
-module.exports = { sayhi };
+const Report = require('../../models/Report');
 
-function sayhi(req, res) {
-  res.send('hello');
+module.exports = { all };
+
+async function all(req, res) {
+  try {
+    const reports = await Report.find({});
+    res.status(200).json(reports);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json(e);
+  }
 }
