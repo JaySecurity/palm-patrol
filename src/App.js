@@ -1,4 +1,5 @@
 import "./App.css";
+import Leaflet from './components/Map/Map';
 import SignUp from "./components/SignUp/SignUp";
 import Login from "./components/Login/Login";
 import AddEvent from "./components/AddEvent/AddEvent";
@@ -19,9 +20,13 @@ function App() {
       <EventCategories />
       <EventDetail />
       <EventList />
+      <Leaflet />
       <nav>
         <AddAlarmIcon />
       </nav>
+
+
+     
     </main>
   );
 }
