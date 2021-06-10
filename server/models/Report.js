@@ -1,15 +1,17 @@
 const mongoose = require("mongoose");
-const commentSchema = new mongoose.Schema({
-  userName: String,
-  discription: String,
-  photos: [],
-}
-{ timestamps: true }
+const commentSchema = new mongoose.Schema(
+  {
+    user: String,
+    description: String,
+    photos: [],
+    user: { type: Schema.Types.ObjectId, ref: "User" },
+  },
+  { timestamps: true }
 );
 const reportSchema = new mongoose.Schema(
   {
     incidentData: Date,
-    catagory: {
+    category: {
       type: String,
       enum: ["Theft", "Vandalism", "Lost&Found", "Other"],
       required: true,
