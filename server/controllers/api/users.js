@@ -17,9 +17,14 @@ async function create(req, res) {
   if ((await User.find({ email: req.body.email })).email)
     return res.status(400).json({ msg: 'Email Already Exists' });
 
-  const hashedPassword = await bcrypt.hash(req.body.password, SALT);
   try {
-    const user = await User.create({ ...req.body, password: hashedPassword });
+    const hashedPassword = await bcrypt.hash(req.body.password, SALT);
+    const user = await User.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: hashedPassword,
+    });
     const token = jwt.sign({ user }, JWT_SECRET, { expiresIn: '12h' });
     res.status(201).json(token);
   } catch (e) {
@@ -30,6 +35,7 @@ async function create(req, res) {
 
 async function login(req, res) {
   try {
+    console.log(req.body.password);
     const user = await User.find({ email: req.body.email });
     if (!user)
       return res.status(400).json({ msg: 'Invalid Email or Password' });
@@ -38,7 +44,9 @@ async function login(req, res) {
     const token = jwt.sign({ user }, JWT_SECRET, { expiresIn: '12h' });
     res.status(200).json(token);
   } catch (e) {
-    res.status(500).json({ msg: 'Something Went Horribly Wrong!' });
+    res
+      .status(500)
+      .json({ msg: 'Something Went Horribly Wrong!', err: e.message });
   }
 }
 
@@ -49,6 +57,6 @@ async function verifyToken(req, res) {
     if (err) {
       return res.status(401).json({ verified: false });
     }
-    res.status(200).json(decoded);
+    res.status(200).json(decoded.user);
   });
 }
