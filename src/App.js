@@ -20,26 +20,33 @@ function App() {
     <Browser>
       <main className="App">
         <Header />
-
-        <Switch>
-          <Route path="/SignUp" render={(props) => <SignUp {...props} />} />
-          <Route path="/Login" render={(props) => <Login {...props} />} />
-          <Route path="/AddEvent" render={(props) => <AddEvent {...props} />} />
-          <Route path="/Comments" render={(props) => <Comments {...props} />} />
-          <Route
-            path="/EventCategories"
-            render={(props) => <EventCategories {...props} />}
-          />
-          <Route
-            path="/EventDetail"
-            render={(props) => <EventDetail {...props} />}
-          />
-          <Route
-            path="/EventList"
-            render={(props) => <EventList {...props} />}
-          />
-          <Leaflet />
-        </Switch>
+        <div className="container">
+          <Switch>
+            <Route path="/SignUp" render={(props) => <SignUp {...props} />} />
+            <Route path="/Login" render={(props) => <Login {...props} />} />
+            <Route
+              path="/AddEvent"
+              render={(props) => <AddEvent {...props} />}
+            />
+            <Route
+              path="/Comments"
+              render={(props) => <Comments {...props} />}
+            />
+            <Route
+              path="/EventCategories"
+              render={(props) => <EventCategories {...props} />}
+            />
+            <Route
+              path="/EventDetail"
+              render={(props) => <EventDetail {...props} />}
+            />
+            <Route
+              path="/EventList"
+              render={(props) => <EventList {...props} />}
+            />
+            <Leaflet />
+          </Switch>
+        </div>
         <nav>
           <Nav />
         </nav>

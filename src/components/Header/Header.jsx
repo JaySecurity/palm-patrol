@@ -9,7 +9,7 @@ function Header() {
         <img
           id="logo"
           src="./../../images/binoculars.png"
-          style={{ width: "7%" }}
+          style={{ width: "4%" }}
         ></img>
         | Palm Patrol
       </header>
