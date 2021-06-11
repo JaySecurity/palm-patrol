@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding: 0;
   font-family: 'Josefin Sans', sans-serif, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -7,14 +8,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 .leaflet-container {
-  margin: 3rem auto;
-  width: 85%;
+  margin: 0.5rem auto;
+  width: 95%;
   max-width: 1200px;
   height: 40vh;
 }
