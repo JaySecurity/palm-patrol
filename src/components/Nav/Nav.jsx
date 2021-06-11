@@ -34,6 +34,7 @@ function Nav() {
           <p id='i-4'>
             <Link to='./AddEvent'>
               <AddAlarmIcon />{' '}
+
             </Link>
           </p>
         </footer>

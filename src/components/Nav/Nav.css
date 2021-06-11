@@ -10,6 +10,7 @@ nav > div:last-child {
   justify-content: center;
   align-items: center;
   z-index: 2;
+  /* text-decoration: none !important; */
 }
 
 .flex-foot {
@@ -21,8 +22,11 @@ nav > div:last-child {
   left: 0;
   width: 100%;
   border-top: 0.5px solid rgba(184, 184, 184, 0.582);
-  background-color: rgb(253, 253, 253);
+  background-color: var(--navbar-color);
   z-index: 2;
+  z-index: 2;
+
+  /* text-decoration: none !important; */
 }
 
 .flex-foot-text {
@@ -34,9 +38,10 @@ nav > div:last-child {
   margin-left: 0.6rem;
   left: 0;
   width: 100%;
-  background-color: rgb(253, 253, 253);
+  background-color: var(--navbar-color);
+  z-index: 2;
   font-size: 0.58rem;
-
-  color: rgb(131, 129, 129, 0.815);
+  /* text-decoration: none !important; */
+  color: var(--navbar-text-color);
   z-index: 3;
 }

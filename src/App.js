@@ -40,6 +40,7 @@ function App() {
             <Nav />
           </nav>
         </div>
+
       </main>
     </Browser>
   );
