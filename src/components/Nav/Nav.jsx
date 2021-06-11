@@ -18,22 +18,22 @@ function Nav() {
         <footer class="flex-foot">
           <p id="i-1">
             <Link to="./EventList">
-              <HomeIcon />
+              <HomeIcon style={{ color: "var(--third-color)" }} />
             </Link>
           </p>
           <p id="i-2">
             <Link to="./SignUp">
-              <ExitToAppIcon />{" "}
+              <ExitToAppIcon style={{ color: "var(--third-color)" }} />{" "}
             </Link>
           </p>
           <p id="i-3">
             <Link to="./EventList">
-              <ViewListIcon />{" "}
+              <ViewListIcon style={{ color: "var(--third-color)" }} />{" "}
             </Link>
           </p>
           <p id="i-4">
             <Link to="./AddEvent">
-              <AddAlarmIcon />{" "}
+              <AddAlarmIcon style={{ color: "var(--third-color)" }} />{" "}
             </Link>
           </p>
         </footer>
