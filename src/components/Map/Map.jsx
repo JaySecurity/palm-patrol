@@ -1,12 +1,14 @@
 import { Icon } from 'leaflet';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 
 function Leaflet(props) {
   const [address, setAddress] = useState('');
   const [markers, setMarkers] = useState([]);
 
+  const mapRef = useRef(null);
+  console.log(mapRef);
   const provider = new OpenStreetMapProvider({
     params: {
       email: 'jasonnicholls1981@gmail.com',
@@ -28,12 +30,17 @@ function Leaflet(props) {
     setMarkers([...markers, [lat, long]]);
   }
 
+  const handleMove = () => {
+    console.log('Move');
+  };
+
   return (
     <div>
       <MapContainer
         center={[42.88652, -79.250854]}
         zoom={15}
         scrollWheelZoom={true}
+        ref={mapRef}
       >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
