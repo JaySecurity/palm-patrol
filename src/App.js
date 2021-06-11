@@ -6,7 +6,6 @@ import EventCategories from './components/EventCategories/EventCategories';
 import EventDetail from './components/EventDetail/EventDetail';
 import Header from './components/Header/Header';
 import Login from './components/Login/Login';
-import Leaflet from './components/Map/Map';
 import Nav from './components/Nav/Nav';
 import SignUp from './components/SignUp/SignUp';
 import ReportsPage from './pages/ReportsPage/ReportsPage';
@@ -36,7 +35,6 @@ function App() {
               render={(props) => <EventDetail {...props} />}
             />
             <Route path='/reports' render={(props) => <ReportsPage />} />
-            <Leaflet />
           </Switch>
           <nav>
             <Nav />
