@@ -1,19 +1,36 @@
+.signup-title {
+  position: fixed;
+  display: block;
+  justify-content: center;
+  text-align: center;
+  top: 25vh;
+  left: 0;
+  width: 100%;
+}
+
 .signup-form {
   position: fixed;
   display: block;
-  text-align: left;
-  top: 33vh;
-  left: 5vw;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
 
-  margin-left: 1rem;
+  text-align: left;
+  top: 40vh;
 
   font-size: 1rem;
   /* text-decoration: none !important; */
   color: var(--navbar-text-color);
   z-index: 3;
 }
+label {
+  /* border: solid 1px black; */
+  width: 40vw;
+}
+.form-row {
+  /* border: solid 1px black; */
+  display: flex;
+  /* justify-content: space-between; */
 
-#input {
-  margin: 1vh;
-  margin-left: 4vw;
+  margin: 2vh;
 }

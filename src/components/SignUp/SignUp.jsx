@@ -3,7 +3,7 @@ import "./SignUp.css";
 function SignUp() {
   return (
     <div>
-      SignUp
+      <div className="signup-title">SignUp</div>
       <form autoComplete="off">
         <div className="signup-form">
           <div className="form-row">
@@ -16,14 +16,16 @@ function SignUp() {
             <input id="input" type="text" name="lastName" required />
           </div>
           <div className="form-row">
-            <label>
-              Email:
-              <input id="input" type="email" name="email" required />
-            </label>
+            <label>Email: </label>
+            <input id="input" type="email" name="email" required />
           </div>
           <div className="form-row">
-            <label>Location:</label>
-            <input id="input" type="text" name="lastName" required />
+            <label>Password:</label>
+            <input id="input" type="text" name="password" required />
+          </div>
+          <div className="form-row">
+            <label>Confirm password:</label>
+            <input id="input" type="text" name="confirm" required />
           </div>
         </div>
       </form>
