@@ -9,31 +9,32 @@ function Nav() {
   return (
     <div>
       <nav>
-        <footer class='flex-foot-text'>
-          <div id='txt-1'>Home</div>
+        {/* <footer class='flex-foot-text'>
+          <p id='txt-1'>Home</p>
           <div id='txt-2'>Logout</div>
           <div id='txt-3'>Events</div>
           <div id='txt-4'>New Event</div>
-        </footer>
+        </footer> */}
         <footer class='flex-foot'>
           <p id='i-1'>
             <Link to='./EventList'>
               <HomeIcon />
+              <p>Home</p>
             </Link>
           </p>
           <p id='i-2'>
             <Link to='./SignUp'>
-              <ExitToAppIcon />{' '}
+              <ExitToAppIcon /> <p>Logout</p>
             </Link>
           </p>
           <p id='i-3'>
             <Link to='/reports'>
-              <ViewListIcon />{' '}
+              <ViewListIcon /> <p>Events</p>
             </Link>
           </p>
           <p id='i-4'>
             <Link to='./AddEvent'>
-              <AddAlarmIcon />{' '}
+              <AddAlarmIcon /> <p>New Event</p>
             </Link>
           </p>
         </footer>

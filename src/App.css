@@ -9,11 +9,9 @@ body {
   background-color: var(--second-color);
 }
 .App {
-  text-align: center;
   color: var(--third-color);
 }
 .container {
-  position: absolute;
-  display: flex;
-  top: 20%;
+  margin-top: 3.75rem;
+  padding: 1rem;
 }
