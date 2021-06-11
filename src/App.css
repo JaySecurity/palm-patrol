@@ -1,3 +1,19 @@
+:root {
+  --main-color: rgb(14, 18, 18);
+  --second-color: rgb(245, 245, 245);
+  --third-color: rgb(16, 0, 163);
+  --navbar-color: rgb(253, 253, 253);
+  --navbar-text-color: rgb(131, 129, 129, 0.815);
+}
+body {
+  background-color: var(--second-color);
+}
 .App {
   text-align: center;
+  color: var(--third-color);
+}
+.container {
+  position: absolute;
+  display: flex;
+  top: 20%;
 }
