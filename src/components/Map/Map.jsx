@@ -1,14 +1,13 @@
 import { Icon } from 'leaflet';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import { useRef, useState } from 'react';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 
 function Leaflet(props) {
   const [address, setAddress] = useState('');
   const [markers, setMarkers] = useState([]);
 
   const mapRef = useRef(null);
-  console.log(mapRef);
   const provider = new OpenStreetMapProvider({
     params: {
       email: 'jasonnicholls1981@gmail.com',
@@ -21,6 +20,7 @@ function Leaflet(props) {
     iconSize: [40, 50],
   });
 
+  // temporary test code
   async function handleSearch() {
     let result = await provider.search({ query: address });
     result = result[0];
@@ -31,17 +31,24 @@ function Leaflet(props) {
   }
 
   const handleMove = () => {
-    console.log('Move');
+    const mapBounds = mapRef.current.leafletElement.getBounds();
+    const bounds = {
+      minLat: mapBounds._southWest.lat,
+      minLong: mapBounds._southWest.lng,
+      maxLat: mapBounds._northEast.lat,
+      maxLong: mapBounds._northEast.lng,
+    };
+    props.setBounds({ ...bounds });
   };
 
   return (
     <div>
-      <MapContainer
+      <Map
         center={[42.88652, -79.250854]}
         zoom={15}
         scrollWheelZoom={true}
         ref={mapRef}
-        on
+        onmoveend={handleMove}
       >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -56,14 +63,14 @@ function Leaflet(props) {
             </Marker>
           );
         })}
-      </MapContainer>
-      <input
+      </Map>
+      {/* <input
         type='text'
         name='address'
         onChange={(e) => setAddress(e.target.value)}
         value={address}
       />
-      <button onClick={handleSearch}>Search Address </button>
+      <button onClick={handleSearch}>Search Address </button> */}
     </div>
   );
 }
