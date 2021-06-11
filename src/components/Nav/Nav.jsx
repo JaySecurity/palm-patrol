@@ -10,7 +10,7 @@ function Nav() {
     <div>
       <nav>
         <footer class='flex-foot-text'>
-          <p id='txt-1'>Home</p>
+          <div id='txt-1'>Home</div>
           <div id='txt-2'>Logout</div>
           <div id='txt-3'>Events</div>
           <div id='txt-4'>New Event</div>
@@ -34,7 +34,6 @@ function Nav() {
           <p id='i-4'>
             <Link to='./AddEvent'>
               <AddAlarmIcon />{' '}
-
             </Link>
           </p>
         </footer>

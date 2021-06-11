@@ -10,6 +10,7 @@ const commentSchema = new Schema(
 );
 const reportSchema = new Schema(
   {
+    user: { type: Schema.Types.ObjectId, ref: 'User' },
     incidentData: Date,
     category: {
       type: String,
@@ -18,7 +19,7 @@ const reportSchema = new Schema(
     },
     location: { address: String, lat: Number, long: Number },
     description: String,
-    photo: [],
+    photos: [],
     comments: [commentSchema],
   },
 
