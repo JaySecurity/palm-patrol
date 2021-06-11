@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
+function EventList(props) {
+  const [events, setEvents] = useState([]);
 
-function EventList() {
+  useEffect(() => {
+    console.log('Update List');
+    // call to api for all events in the bounds of the map
+  }, [props.bounds]);
+
   return (
     <div>
-      <h1>EventList</h1>
+      <h1>Recent Reports</h1>
     </div>
   );
 }
