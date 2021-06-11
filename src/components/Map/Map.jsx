@@ -41,6 +41,7 @@ function Leaflet(props) {
         zoom={15}
         scrollWheelZoom={true}
         ref={mapRef}
+        on
       >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
