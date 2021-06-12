@@ -14,3 +14,8 @@ body {
   max-width: 1200px;
   height: 40vh;
 }
+.leaflet-touch .leaflet-bar a {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
