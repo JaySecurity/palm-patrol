@@ -42,36 +42,27 @@ function Leaflet(props) {
   };
 
   return (
-    <div>
-      <Map
-        center={[42.88652, -79.250854]}
-        zoom={15}
-        scrollWheelZoom={true}
-        ref={mapRef}
-        onmoveend={handleMove}
-      >
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-        />
-        {markers.map((marker) => {
-          return (
-            <Marker position={[...marker]} icon={theftPin}>
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
-            </Marker>
-          );
-        })}
-      </Map>
-      {/* <input
-        type='text'
-        name='address'
-        onChange={(e) => setAddress(e.target.value)}
-        value={address}
+    <Map
+      center={[42.88652, -79.250854]}
+      zoom={15}
+      scrollWheelZoom={true}
+      ref={mapRef}
+      onmoveend={handleMove}
+    >
+      <TileLayer
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
       />
-      <button onClick={handleSearch}>Search Address </button> */}
-    </div>
+      {markers.map((marker) => {
+        return (
+          <Marker position={[...marker]} icon={theftPin}>
+            <Popup>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </Popup>
+          </Marker>
+        );
+      })}
+    </Map>
   );
 }
 

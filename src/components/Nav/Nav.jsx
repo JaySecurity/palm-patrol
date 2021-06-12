@@ -9,12 +9,6 @@ function Nav() {
   return (
     <div>
       <nav>
-        {/* <footer class='flex-foot-text'>
-          <p id='txt-1'>Home</p>
-          <div id='txt-2'>Logout</div>
-          <div id='txt-3'>Events</div>
-          <div id='txt-4'>New Event</div>
-        </footer> */}
         <footer class='flex-foot'>
           <p id='i-1'>
             <Link to='./EventList'>
