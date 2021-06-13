@@ -84,7 +84,7 @@ function AddEvent(props) {
 
   return (
     <div className='AddEvent'>
-      <h1>Add a {props.type} Report</h1>
+      <h1>Add a {report.category} Report</h1>
       <div className='add-form'>
         <form onSubmit={handleSubmit} autoComplete='off'>
           <TextField
