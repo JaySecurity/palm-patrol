@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import axios from 'axios';
+import { useContext, useEffect } from 'react';
 import { BrowserRouter as Browser, Route, Switch } from 'react-router-dom';
 import './App.css';
 import AddEvent from './components/AddEvent/AddEvent';
@@ -8,8 +11,26 @@ import Header from './components/Header/Header';
 import Login from './components/Login/Login';
 import Nav from './components/Nav/Nav';
 import SignUp from './components/SignUp/SignUp';
+import { UserContext } from './Context/UserContext';
 import ReportsPage from './pages/ReportsPage/ReportsPage';
 function App() {
+  const [user, setUser] = useContext(UserContext);
+
+  useEffect(async () => {
+    let token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const res = await axios.post('/api/users/verify', { token });
+        const validUser = res.data.decoded.user;
+        setUser(validUser);
+      } catch (e) {
+        setUser(null);
+      }
+    } else {
+      setUser(null);
+    }
+  }, []);
+
   return (
     <Browser>
       <main className='App'>
@@ -40,7 +61,6 @@ function App() {
             <Nav />
           </nav>
         </div>
-
       </main>
     </Browser>
   );

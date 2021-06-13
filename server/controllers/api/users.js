@@ -34,7 +34,6 @@ async function create(req, res) {
 }
 
 async function login(req, res) {
-  console.log(req.body);
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user)
@@ -57,6 +56,6 @@ async function verifyToken(req, res) {
     if (err) {
       return res.status(401).json({ verified: false });
     }
-    res.status(200).json({ verified: false });
+    res.status(200).json({ verified: true, decoded });
   });
 }
