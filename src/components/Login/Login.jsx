@@ -3,8 +3,9 @@ import TextField from '@material-ui/core/TextField';
 import { ExitToApp } from '@material-ui/icons';
 import MuiAlert from '@material-ui/lab/Alert';
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { UserContext } from '../../context/UserContext';
 import './Login.css';
 
 function Login(props) {
@@ -12,6 +13,7 @@ function Login(props) {
   const [password, setPassword] = useState('');
   const [msg, setMsg] = useState(null);
   const history = useHistory();
+  const [user, setUser] = useContext(UserContext);
 
   const handleSubmit = async () => {
     setMsg(null);
@@ -19,8 +21,12 @@ function Login(props) {
       let res = await axios.post('/api/users/login', { email, password });
       let token = `Bearer ${res.data}`;
       localStorage.setItem('token', token);
+      res = await axios.post('/api/users/verify', { token });
+      const validUser = res.data.decoded.user;
+      setUser(validUser);
       history.push('/');
     } catch (e) {
+      setUser(null);
       let {
         response: {
           data: { msg },

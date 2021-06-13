@@ -11,7 +11,7 @@ import Header from './components/Header/Header';
 import Login from './components/Login/Login';
 import Nav from './components/Nav/Nav';
 import SignUp from './components/SignUp/SignUp';
-import { UserContext } from './Context/UserContext';
+import { UserContext } from './context/UserContext';
 import ReportsPage from './pages/ReportsPage/ReportsPage';
 function App() {
   const [user, setUser] = useContext(UserContext);
