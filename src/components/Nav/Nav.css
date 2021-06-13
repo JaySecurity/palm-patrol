@@ -26,8 +26,6 @@ nav > div:last-child {
   border-top: 0.5px solid rgba(184, 184, 184, 0.582);
   background-color: var(--navbar-color);
   z-index: 2;
-
-  /* text-decoration: none !important; */
 }
 
 .flex-foot p {
@@ -36,5 +34,11 @@ nav > div:last-child {
 
 .flex-foot a {
   text-decoration: none;
+  color: blue;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
   color: blue;
 }

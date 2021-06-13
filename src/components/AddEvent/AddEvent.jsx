@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import SaveIcon from '@material-ui/icons/Save';
+import { OpenStreetMapProvider } from 'leaflet-geosearch';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { UserContext } from '../../context/UserContext';
+import './AddEvent.css';
 
 function AddEvent(props) {
-  const [location, setLocation] = useState('');
+  //const [location, setLocation] = useState('');
+  const [user, setUser] = useContext(UserContext);
   const [report, setReport] = useState({
-    user: '',
+    user,
     incidentData: '',
-    category: props.type,
+    category: props.category,
     location: {
       address: '',
       lat: 0,
@@ -14,7 +22,22 @@ function AddEvent(props) {
     description: '',
     photos: [],
   });
+  const history = useHistory();
 
+  useEffect(() => {
+    if (!user) history.push('/login');
+  });
+
+  // GeoSearch Provider
+  const provider = new OpenStreetMapProvider({
+    params: {
+      email: 'jasonnicholls1981@gmail.com',
+      'accept-language': 'en',
+      countrycodes: 'ca',
+    },
+  });
+
+  // set nested objects on change
   function nestedObjectGetUpdate(data, field, value) {
     let schema = data; // a moving reference to internal objects within obj
     const pList = field.split('.');
@@ -34,21 +57,82 @@ function AddEvent(props) {
   const handleChange = (e) => {
     let update = report;
     nestedObjectGetUpdate(update, e.target.name, e.target.value);
-    setReport({ ...report, update });
+    setReport({ ...report, ...update });
+    //setReport({ ...report, [e.target.name]: e.target.value });
+    console.log(report);
+  };
+
+  const handleAddress = async () => {
+    try {
+      let address = report.location.address;
+      let result = await provider.search({ query: address });
+      result = result[0];
+      console.log(result);
+      address = result.label;
+      const lat = result.y;
+      const long = result.x;
+      setReport({ ...report, location: { address, lat, long } });
+      console.log(report);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
   };
 
   return (
-    <div>
+    <div className='AddEvent'>
       <h1>Add a {props.type} Report</h1>
-      <form autoComplete='off'>
-        <input
-          id='report.location.address'
-          name='location.address'
-          value={report.location.address}
-          label='Location'
-          onChange={handleChange}
-        />
-      </form>
+      <div className='add-form'>
+        <form onSubmit={handleSubmit} autoComplete='off'>
+          <TextField
+            className='form-group'
+            required
+            id='report.location.address'
+            name='location.address'
+            value={report.location.address}
+            label='Location'
+            placeholder='Enter Address'
+            onChange={handleChange}
+            onBlur={handleAddress}
+          />
+          <TextField
+            className='form-group'
+            required
+            id='incidentData'
+            name='incidentData'
+            label='Date / Time of Incident'
+            type='datetime-local'
+            defaultValue={report.incidentData}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={handleChange}
+          />
+          <TextField
+            className='form-group'
+            required
+            id='description'
+            name='description'
+            multiline
+            rows={5}
+            value={report.description}
+            label='Description'
+            onChange={handleChange}
+          />
+          <Button
+            variant='contained'
+            color='primary'
+            size='small'
+            startIcon={<SaveIcon />}
+            className='save-btn'
+          >
+            Save
+          </Button>
+        </form>
+      </div>
     </div>
   );
 }
