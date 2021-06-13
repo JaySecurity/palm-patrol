@@ -2,12 +2,13 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import './AddEvent.css';
 
 function AddEvent(props) {
-  const [location, setLocation] = useState('');
+  //const [location, setLocation] = useState('');
   const [user, setUser] = useContext(UserContext);
   const [report, setReport] = useState({
     user,
@@ -20,6 +21,11 @@ function AddEvent(props) {
     },
     description: '',
     photos: [],
+  });
+  const history = useHistory();
+
+  useEffect(() => {
+    if (!user) history.push('/login');
   });
 
   // GeoSearch Provider

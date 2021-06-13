@@ -45,7 +45,7 @@ function Login(props) {
     <div className='Login'>
       <h1>Login</h1>
       {msg && <Alert severity='error'>{msg}</Alert>}
-      <form onSubmit={handleSubmit} autoComplete='off'>
+      <form onSubmit={handleSubmit}>
         <TextField
           className='form-group'
           required
