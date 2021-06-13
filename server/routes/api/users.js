@@ -3,6 +3,6 @@ const userCtrl = require('../../controllers/api/users');
 
 router.post('/signup', userCtrl.create);
 router.post('/login', userCtrl.login);
-router.get('/verify', userCtrl.verifyToken);
+router.post('/verify', userCtrl.verifyToken);
 
 module.exports = router;

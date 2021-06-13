@@ -11,3 +11,8 @@ async function all(req, res) {
     res.status(500).json(e);
   }
 }
+
+async function create(req, res) {
+  try {
+  } catch (e) {}
+}

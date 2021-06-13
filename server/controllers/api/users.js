@@ -56,6 +56,6 @@ async function verifyToken(req, res) {
     if (err) {
       return res.status(401).json({ verified: false });
     }
-    res.status(200).json({ verified: false });
+    res.status(200).json({ verified: true, decoded });
   });
 }
