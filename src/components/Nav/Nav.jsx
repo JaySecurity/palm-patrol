@@ -21,7 +21,7 @@ function Nav() {
       <nav>
         <footer class='flex-foot'>
           <p id='i-1'>
-            <Link to='./EventList'>
+            <Link to='/'>
               <HomeIcon />
               <p>Home</p>
             </Link>

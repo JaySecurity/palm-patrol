@@ -41,7 +41,7 @@ function App() {
             <Route path='/Login' render={(props) => <Login {...props} />} />
             <Route
               path='/AddEvent'
-              render={(props) => <AddEvent {...props} />}
+              render={(props) => <AddEvent {...props} category='Theft' />}
             />
             <Route
               path='/Comments'
@@ -55,6 +55,7 @@ function App() {
               path='/EventDetail'
               render={(props) => <EventDetail {...props} />}
             />
+            <Route path='/' exact render={(props) => <ReportsPage />} />
             <Route path='/reports' render={(props) => <ReportsPage />} />
           </Switch>
           <nav>

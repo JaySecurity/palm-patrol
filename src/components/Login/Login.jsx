@@ -15,7 +15,8 @@ function Login(props) {
   const history = useHistory();
   const [user, setUser] = useContext(UserContext);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setMsg(null);
     try {
       let res = await axios.post('/api/users/login', { email, password });
