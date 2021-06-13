@@ -1,5 +1,8 @@
+import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import SaveIcon from '@material-ui/icons/Save';
 import React, { useState } from 'react';
+import './AddEvent.css';
 
 function AddEvent(props) {
   const [location, setLocation] = useState('');
@@ -41,37 +44,52 @@ function AddEvent(props) {
   };
 
   return (
-    <div>
+    <div className='AddEvent'>
       <h1>Add a {props.type} Report</h1>
-      <form autoComplete='off'>
-        <TextField
-          id='report.location.address'
-          name='location.address'
-          value={report.location.address}
-          label='Location'
-          onChange={handleChange}
-        />
-        <TextField
-          id='incidentData'
-          name='incidentData'
-          label='Date / Time of Incident'
-          type='datetime-local'
-          defaultValue={report.incidentData}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          onChange={handleChange}
-        />
-        <TextField
-          id='description'
-          name='description'
-          multiline
-          rows={5}
-          value={report.description}
-          label='Description'
-          onChange={handleChange}
-        />
-      </form>
+      <div className='add-form'>
+        <form autoComplete='off'>
+          <TextField
+            className='form-group'
+            id='report.location.address'
+            name='location.address'
+            value={report.location.address}
+            label='Location'
+            placeholder='Enter Address'
+            onChange={handleChange}
+          />
+          <TextField
+            className='form-group'
+            id='incidentData'
+            name='incidentData'
+            label='Date / Time of Incident'
+            type='datetime-local'
+            defaultValue={report.incidentData}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={handleChange}
+          />
+          <TextField
+            className='form-group'
+            id='description'
+            name='description'
+            multiline
+            rows={5}
+            value={report.description}
+            label='Description'
+            onChange={handleChange}
+          />
+          <Button
+            variant='contained'
+            color='primary'
+            size='small'
+            startIcon={<SaveIcon />}
+            className='save-btn'
+          >
+            Save
+          </Button>
+        </form>
+      </div>
     </div>
   );
 }
