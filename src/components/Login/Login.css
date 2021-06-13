@@ -15,6 +15,6 @@ h1 {
 }
 
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 1rem !important;
   width: 90%;
 }
