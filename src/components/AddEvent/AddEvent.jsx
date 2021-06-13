@@ -1,3 +1,4 @@
+import TextField from '@material-ui/core/TextField';
 import React, { useState } from 'react';
 
 function AddEvent(props) {
@@ -5,7 +6,7 @@ function AddEvent(props) {
   const [report, setReport] = useState({
     user: '',
     incidentData: '',
-    category: props.type,
+    category: props.category,
     location: {
       address: '',
       lat: 0,
@@ -35,17 +36,39 @@ function AddEvent(props) {
     let update = report;
     nestedObjectGetUpdate(update, e.target.name, e.target.value);
     setReport({ ...report, update });
+    //setReport({ ...report, [e.target.name]: e.target.value });
+    console.log(report);
   };
 
   return (
     <div>
       <h1>Add a {props.type} Report</h1>
       <form autoComplete='off'>
-        <input
+        <TextField
           id='report.location.address'
           name='location.address'
           value={report.location.address}
           label='Location'
+          onChange={handleChange}
+        />
+        <TextField
+          id='incidentData'
+          name='incidentData'
+          label='Date / Time of Incident'
+          type='datetime-local'
+          defaultValue={report.incidentData}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          onChange={handleChange}
+        />
+        <TextField
+          id='description'
+          name='description'
+          multiline
+          rows={5}
+          value={report.description}
+          label='Description'
           onChange={handleChange}
         />
       </form>
