@@ -13,9 +13,10 @@ module.exports = {
 
 async function create(req, res) {
   if (req.body.password !== req.body.confirm)
-    return res.status(400).json({ msg: "Passwords Do Not Match" });
+    return res.status(400).json({ msg: 'Passwords Do Not Match' });
   if (await User.findOne({ email: req.body.email }))
-    return res.status(400).json({ msg: "Email Already Exists" });
+    return res.status(400).json({ msg: 'Email Already Exists' });
+
 
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, SALT);

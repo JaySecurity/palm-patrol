@@ -59,7 +59,6 @@ function AddEvent(props) {
     nestedObjectGetUpdate(update, e.target.name, e.target.value);
     setReport({ ...report, ...update });
     //setReport({ ...report, [e.target.name]: e.target.value });
-    console.log(report);
   };
 
   const handleAddress = async () => {
@@ -84,7 +83,7 @@ function AddEvent(props) {
 
   return (
     <div className='AddEvent'>
-      <h1>Add a {props.type} Report</h1>
+      <h1>Add a {report.category} Report</h1>
       <div className='add-form'>
         <form onSubmit={handleSubmit} autoComplete='off'>
           <TextField

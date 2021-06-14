@@ -19,14 +19,14 @@ function Nav() {
   return (
     <div>
       <nav>
-        <footer className="flex-foot">
-          <p id="i-1">
-            <Link to="/">
+        <footer className='flex-foot'>
+          <div id='i-1'>
+            <Link to='/'>
               <HomeIcon />
               <p>Home</p>
             </Link>
-          </p>
-          <p id="i-2">
+          </div>
+          <div id='i-2'>
             {!user?._id ? (
               <Link to="/login">
                 <ExitToAppIcon />
@@ -38,17 +38,17 @@ function Nav() {
                 <p>Logout</p>
               </button>
             )}
-          </p>
-          <p id="i-3">
-            <Link to="/reports">
+          </div>
+          <div id='i-3'>
+            <Link to='/reports'>
               <ViewListIcon /> <p>Events</p>
             </Link>
-          </p>
-          <p id="i-4">
-            <Link to="./AddEvent">
+          </div>
+          <div id='i-4'>
+            <Link to='./AddEvent'>
               <AddAlarmIcon /> <p>New Event</p>
             </Link>
-          </p>
+          </div>
         </footer>
       </nav>
     </div>
