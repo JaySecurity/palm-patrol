@@ -15,6 +15,7 @@
     "concurrently": "^6.2.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
     "jsonwebtoken": "^8.5.1",
     "leaflet": "^1.7.1",
     "leaflet-geosearch": "^3.3.2",

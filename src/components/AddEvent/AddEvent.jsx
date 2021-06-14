@@ -83,15 +83,13 @@ function AddEvent(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    console.log(files);
-    formData.append('file', [...files]);
-    formData.append('body', { ...report });
-    console.log(formData);
+    const data = new FormData();
+    files.map((file, i) => data.append(`files`, file));
+    data.append('report', JSON.stringify(report));
 
     try {
       let token = localStorage.getItem('token');
-      const res = await axios.post('/api/reports/', formData, {
+      const res = await axios.post('/api/reports/', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: token,

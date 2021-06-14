@@ -14,7 +14,12 @@ async function all(req, res) {
 
 async function create(req, res) {
   try {
-    console.log(req);
+    // get files to send to S3
+    let files = req.files.files;
+    // get report body for database
+    let report = JSON.parse(req.body.report);
+    // upload files push urls to report create and save report
+
     res.status(201).json({ msg: 'Created' });
   } catch (err) {
     console.log(err);
