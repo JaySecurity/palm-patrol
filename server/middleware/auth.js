@@ -7,7 +7,7 @@ module.exports = function (req, res, next) {
     token = token.split(' ')[1];
     jwt.verify(token, JWT_SECRET, function (err, decoded) {
       if (err) {
-        return res.status(401).json({ verified: false });
+        return res.status(401).json({ verified: false, msg: 'Login Required' });
       } else {
         // It's a valid token, so add user to req
         req.user = decoded.user;
