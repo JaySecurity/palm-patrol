@@ -6,6 +6,7 @@ import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
+import Spinner from '../Spinner/Spinner';
 import Uploader from '../Uploader/Uploader';
 import './AddEvent.css';
 
@@ -26,6 +27,7 @@ function AddEvent(props) {
     description: '',
     photos: [],
   });
+  const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -79,10 +81,12 @@ function AddEvent(props) {
     } catch (e) {
       console.log(e);
     }
+    setIsLoading(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const data = new FormData();
     files.map((file, i) => data.append(`files`, file));
     data.append('report', JSON.stringify(report));
@@ -103,6 +107,7 @@ function AddEvent(props) {
 
   return (
     <div className='AddEvent'>
+      {isLoading && <Spinner />}
       <h1>Add a {report.category} Report</h1>
       <div className='add-form'>
         <form onSubmit={handleSubmit} autoComplete='off'>
