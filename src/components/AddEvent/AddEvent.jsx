@@ -5,13 +5,16 @@ import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
+import Uploader from '../Uploader/Uploader';
 import './AddEvent.css';
 
 function AddEvent(props) {
   //const [location, setLocation] = useState('');
   const [user, setUser] = useContext(UserContext);
+  const [files, setFiles] = useState([]);
   const [report, setReport] = useState({
     user,
+    title: '',
     incidentData: '',
     category: props.category,
     location: {
@@ -100,6 +103,16 @@ function AddEvent(props) {
           <TextField
             className='form-group'
             required
+            id='report.title'
+            name='title'
+            value={report.title}
+            label='Title'
+            placeholder='Report Title'
+            onChange={handleChange}
+          />
+          <TextField
+            className='form-group'
+            required
             id='incidentData'
             name='incidentData'
             label='Date / Time of Incident'
@@ -131,6 +144,7 @@ function AddEvent(props) {
             Save
           </Button>
         </form>
+        <Uploader files={files} setFiles={setFiles} />
       </div>
     </div>
   );

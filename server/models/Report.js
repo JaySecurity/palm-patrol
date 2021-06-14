@@ -11,6 +11,7 @@ const commentSchema = new Schema(
 const reportSchema = new Schema(
   {
     user: { type: Schema.Types.ObjectId, ref: 'User' },
+    title: String,
     incidentData: Date,
     category: {
       type: String,

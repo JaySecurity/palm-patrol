@@ -1,6 +1,6 @@
 import React from 'react';
 
-function EventListItem() {
+function EventListItem({ report }) {
   return <div></div>;
 }
 
