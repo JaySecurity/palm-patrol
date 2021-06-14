@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const commentSchema = new Schema(
   {
-    user: { type: Schema.Types.ObjectId, ref: 'User' },
+    user: { type: Schema.Types.ObjectId, ref: "User" },
     description: String,
     photos: [],
   },
@@ -10,11 +10,12 @@ const commentSchema = new Schema(
 );
 const reportSchema = new Schema(
   {
-    user: { type: Schema.Types.ObjectId, ref: 'User' },
+    user: { type: Schema.Types.ObjectId, ref: "User" },
+    title: String,
     incidentData: Date,
     category: {
       type: String,
-      enum: ['Theft', 'Vandalism', 'Lost&Found', 'Other'],
+      enum: ["Theft", "Vandalism", "Lost&Found", "Other"],
       required: true,
     },
     location: { address: String, lat: Number, long: Number },
@@ -25,4 +26,4 @@ const reportSchema = new Schema(
 
   { timestamps: true }
 );
-module.exports = mongoose.model('Report', reportSchema);
+module.exports = mongoose.model("Report", reportSchema);

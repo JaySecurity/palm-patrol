@@ -13,10 +13,9 @@ module.exports = {
 
 async function create(req, res) {
   if (req.body.password !== req.body.confirm)
-    return res.status(400).json({ msg: 'Passwords Do Not Match' });
+    return res.status(400).json({ msg: "Passwords Do Not Match" });
   if (await User.findOne({ email: req.body.email }))
-    return res.status(400).json({ msg: 'Email Already Exists' });
-
+    return res.status(400).json({ msg: "Email Already Exists" });
 
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, SALT);
@@ -44,6 +43,7 @@ async function login(req, res) {
     const token = jwt.sign({ user }, JWT_SECRET, { expiresIn: "10h" });
     res.status(200).json(token);
   } catch (e) {
+    console.log(e.message);
     res
       .status(500)
       .json({ msg: "Something Went Horribly Wrong!", err: e.message });
