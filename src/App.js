@@ -14,6 +14,7 @@ import SignUp from "./components/SignUp/SignUp";
 import { UserContext } from "./context/UserContext";
 import ReportsPage from "./pages/ReportsPage/ReportsPage";
 import EventListItem from "./components/EventListItem/EventListItem";
+
 function App() {
   const [user, setUser] = useContext(UserContext);
 
@@ -62,6 +63,10 @@ function App() {
             />
             <Route path="/" exact render={(props) => <ReportsPage />} />
             <Route path="/reports" render={(props) => <ReportsPage />} />
+            <Route
+              path="/EventCategories"
+              render={(props) => <EventCategories />}
+            />
           </Switch>
           <nav>
             <Nav />
