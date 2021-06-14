@@ -1,19 +1,19 @@
-import AddAlarmIcon from '@material-ui/icons/AddAlarm';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import HomeIcon from '@material-ui/icons/Home';
-import ViewListIcon from '@material-ui/icons/ViewList';
-import React, { useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { UserContext } from '../../context/UserContext.js';
-import './Nav.css';
+import AddAlarmIcon from "@material-ui/icons/AddAlarm";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import HomeIcon from "@material-ui/icons/Home";
+import ViewListIcon from "@material-ui/icons/ViewList";
+import React, { useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { UserContext } from "../../context/UserContext.js";
+import "./Nav.css";
 function Nav() {
   const [user, setUser] = useContext(UserContext);
   const history = useHistory();
 
   const handleLogout = () => {
     setUser(null);
-    localStorage.removeItem('token');
-    history.push('/');
+    localStorage.removeItem("token");
+    history.push("/");
   };
 
   return (
@@ -28,12 +28,12 @@ function Nav() {
           </div>
           <div id='i-2'>
             {!user?._id ? (
-              <Link to='/login'>
+              <Link to="/login">
                 <ExitToAppIcon />
                 <p>Login</p>
               </Link>
             ) : (
-              <button className='logout-btn' onClick={handleLogout}>
+              <button className="logout-btn" onClick={handleLogout}>
                 <ExitToAppIcon />
                 <p>Logout</p>
               </button>

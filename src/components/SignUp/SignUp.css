@@ -1,19 +1,20 @@
-.signup-form {
-  position: fixed;
-  display: block;
-  text-align: left;
-  top: 33vh;
-  left: 5vw;
-
-  margin-left: 1rem;
-
-  font-size: 1rem;
-  /* text-decoration: none !important; */
-  color: var(--navbar-text-color);
-  z-index: 3;
+.SignUp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-#input {
-  margin: 1vh;
-  margin-left: 4vw;
+h1 {
+  margin: 1rem;
+}
+.SignUp-form {
+  padding: 0 2rem;
+  width: 25rem;
+  max-width: 85vw;
+}
+
+.form-group {
+  margin-bottom: 1rem !important;
+  width: 90%;
 }
