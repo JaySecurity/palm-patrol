@@ -1,6 +1,7 @@
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
+import axios from 'axios';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -80,8 +81,26 @@ function AddEvent(props) {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    console.log(files);
+    formData.append('file', [...files]);
+    formData.append('body', { ...report });
+    console.log(formData);
+
+    try {
+      let token = localStorage.getItem('token');
+      const res = await axios.post('/api/reports/', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: token,
+        },
+      });
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -134,17 +153,18 @@ function AddEvent(props) {
             label='Description'
             onChange={handleChange}
           />
-          <Button
-            variant='contained'
-            color='primary'
-            size='small'
-            startIcon={<SaveIcon />}
-            className='save-btn'
-          >
-            Save
-          </Button>
         </form>
         <Uploader files={files} setFiles={setFiles} />
+        <Button
+          variant='contained'
+          color='primary'
+          size='small'
+          startIcon={<SaveIcon />}
+          className='save-btn'
+          onClick={handleSubmit}
+        >
+          Save
+        </Button>
       </div>
     </div>
   );

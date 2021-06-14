@@ -10,41 +10,55 @@ import React from 'react';
 import './Uploader.css';
 
 function Uploader({ files, setFiles }) {
-  function generate(element) {
-    return [0].map((value) =>
-      React.cloneElement(element, {
-        key: value,
-      })
-    );
-  }
+  const handleChange = (e) => {
+    if (!e.target.files[0]) return;
+    setFiles((prevFiles) => {
+      return [e.target.files[0], ...prevFiles];
+    });
+  };
+
+  const handleDelete = (filename) => {
+    setFiles((prevFiles) => prevFiles.filter((file) => file.name !== filename));
+  };
 
   return (
     <div className='Uploader'>
       <div className='list'>
         <List dense={false}>
-          {generate(
-            <ListItem>
-              <ListItemText primary='Single-line item' />
+          {files.map((file, i) => (
+            <ListItem key={i}>
+              <ListItemText primary={file.name} />
               <ListItemSecondaryAction>
-                <IconButton edge='end' aria-label='delete'>
+                <IconButton
+                  edge='end'
+                  aria-label='delete'
+                  onClick={() => handleDelete(file.name)}
+                >
                   <DeleteIcon />
                 </IconButton>
               </ListItemSecondaryAction>
             </ListItem>
-          )}
+          ))}
         </List>
       </div>
-      <input accept='image/*' id='image-upload' type='file' />
-      <label htmlFor='image-upload'>
-        <Button
-          variant='contained'
-          color='primary'
-          component='span'
-          endIcon={<PhotoCamera />}
-        >
-          Upload Photo
-        </Button>
-      </label>
+      <form>
+        <input
+          accept='image/*'
+          id='image-upload'
+          type='file'
+          onChange={handleChange}
+        />
+        <label htmlFor='image-upload'>
+          <Button
+            variant='contained'
+            color='primary'
+            component='span'
+            endIcon={<PhotoCamera />}
+          >
+            Upload Photo
+          </Button>
+        </label>
+      </form>
     </div>
   );
 }
