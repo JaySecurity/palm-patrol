@@ -59,7 +59,6 @@ function AddEvent(props) {
     nestedObjectGetUpdate(update, e.target.name, e.target.value);
     setReport({ ...report, ...update });
     //setReport({ ...report, [e.target.name]: e.target.value });
-    console.log(report);
   };
 
   const handleAddress = async () => {
