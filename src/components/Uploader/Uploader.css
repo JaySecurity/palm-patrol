@@ -1,0 +1,10 @@
+.Uploader {
+  margin: 1.5rem auto;
+}
+input {
+  display: none;
+}
+
+.list {
+  margin-bottom: 1.25rem !important;
+}
