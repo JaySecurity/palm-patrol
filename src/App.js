@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+
 import axios from 'axios';
 import { useContext, useEffect } from 'react';
 import { BrowserRouter as Browser, Route, Switch } from 'react-router-dom';
@@ -14,6 +15,7 @@ import Nav from './components/Nav/Nav';
 import SignUp from './components/SignUp/SignUp';
 import { UserContext } from './context/UserContext';
 import ReportsPage from './pages/ReportsPage/ReportsPage';
+
 function App() {
   const [user, setUser] = useContext(UserContext);
 
@@ -60,8 +62,14 @@ function App() {
               path='/EventListItem'
               render={(props) => <EventListItem {...props} />}
             />
-            <Route path='/' exact render={(props) => <ReportsPage />} />
-            <Route path='/reports' render={(props) => <ReportsPage />} />
+
+            <Route path="/" exact render={(props) => <ReportsPage />} />
+            <Route path="/reports" render={(props) => <ReportsPage />} />
+            <Route
+              path="/EventCategories"
+              render={(props) => <EventCategories />}
+            />
+
           </Switch>
           <nav>
             <Nav />
