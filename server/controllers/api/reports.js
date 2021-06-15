@@ -28,7 +28,6 @@ const uploadToS3 = (file) => {
     });
   });
 };
-module.exports = { all, create };
 
 async function all(req, res) {
   try {
@@ -72,3 +71,18 @@ async function create(req, res) {
     console.log(err);
   }
 }
+
+async function getOne(req, res) {
+  try {
+    const report = await Report.findById(req.params.id);
+    if (!report) {
+      return res.status(404).json({ msg: 'Report Not Found' });
+    }
+    res.status(200).json(report);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: 'Something Went Wrong!', error: err });
+  }
+}
+
+module.exports = { all, create, getOne };
