@@ -1,21 +1,22 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
+import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
+import IconButton from "@material-ui/core/IconButton";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import clsx from "clsx";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import Spinner from "../Spinner/Spinner";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -41,21 +42,73 @@ const useStyles = makeStyles((theme) => ({
 function EventDetail(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const history = useHistory();
+  const [report, setReport] = useState({
+    user: "",
+    title: "",
+    incidentData: "",
+    category: "",
+    location: {
+      address: "",
+      lat: 0,
+      long: 0,
+    },
+    description: "",
+    photos: [],
+  });
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(async () => {
+    setIsLoading(true);
+    try {
+      const res = await axios.get(`/api/reports/${props.match.params.id}`);
+      setReport(res.data);
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+      console.log(err);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
+  const handleDelete = async (id) => {
+    setIsLoading(true);
+    try {
+      let token = localStorage.getItem("token");
+      await axios.delete(`/api/reports/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+      });
+      setIsLoading(false);
+      history.push("/");
+    } catch (err) {
+      setIsLoading(false);
+      console.log(err);
+    }
+  };
+
   return (
     <Card className={classes.root}>
+      {isLoading && <Spinner />}
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
             R
           </Avatar>
         }
-        title={"Shrimp and Chorizo Paella"}
-        subheader="September 14, 2016"
+        title={report.title}
+        subheader={`${new Date(
+          report.incidentData
+        ).toLocaleDateString()} - ${new Date(
+          report.incidentData
+        ).toLocaleTimeString()}`}
       />
       <CardMedia
         className={classes.media}
@@ -64,9 +117,7 @@ function EventDetail(props) {
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
+          {report.description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -77,11 +128,14 @@ function EventDetail(props) {
           <ShareIcon />
         </IconButton>
         <IconButton aria-label="share">edit</IconButton>
-        {/* <Link to={`/api/reports/${RReport._id}/delete`}> */}
-        <IconButton onClick={() => {}} aria-label="share">
+        <IconButton
+          aria-label="share"
+          onClick={() => {
+            handleDelete(report._id);
+          }}
+        >
           delete
         </IconButton>
-        {/* </Link> */}
 
         <IconButton
           className={clsx(classes.expand, {
@@ -105,13 +159,3 @@ function EventDetail(props) {
 }
 
 export default EventDetail;
-
-{
-  /* <div>
-    <h1>{report.title}detail:</h1>
-
-    <span>Date: {report.incidentData}</span>
-    <span>Category: {report.category}</span>
-    <span>Description: {report.description}</span>
-  </div>; */
-}
