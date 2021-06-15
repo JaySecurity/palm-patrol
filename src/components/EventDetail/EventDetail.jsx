@@ -42,7 +42,19 @@ const useStyles = makeStyles((theme) => ({
 function EventDetail(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-  const [report, setReport] = useState();
+  const [report, setReport] = useState({
+    user: '',
+    title: '',
+    incidentData: '',
+    category: '',
+    location: {
+      address: '',
+      lat: 0,
+      long: 0,
+    },
+    description: '',
+    photos: [],
+  });
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
