@@ -1,39 +1,39 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import Avatar from '@material-ui/core/Avatar';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
-import Collapse from '@material-ui/core/Collapse';
-import { red } from '@material-ui/core/colors';
-import IconButton from '@material-ui/core/IconButton';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import axios from 'axios';
-import clsx from 'clsx';
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import Spinner from '../Spinner/Spinner';
-import ImageCarousel from '../ImageCarousel/ImageCarousel';
+import Avatar from "@material-ui/core/Avatar";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardHeader from "@material-ui/core/CardHeader";
+import Collapse from "@material-ui/core/Collapse";
+import { red } from "@material-ui/core/colors";
+import IconButton from "@material-ui/core/IconButton";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import ShareIcon from "@material-ui/icons/Share";
+import axios from "axios";
+import clsx from "clsx";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import Spinner from "../Spinner/Spinner";
+import ImageCarousel from "../ImageCarousel/ImageCarousel";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: "56.25%", // 16:9
   },
   expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.shortest,
     }),
   },
   expandOpen: {
-    transform: 'rotate(180deg)',
+    transform: "rotate(180deg)",
   },
   avatar: {
     backgroundColor: red[500],
@@ -47,16 +47,16 @@ function EventDetail(props) {
   const history = useHistory();
   const [photos, setPhotos] = useState([]);
   const [report, setReport] = useState({
-    user: '',
-    title: '',
-    incidentData: '',
-    category: '',
+    user: "",
+    title: "",
+    incidentData: "",
+    category: "",
     location: {
-      address: '',
+      address: "",
       lat: 0,
       long: 0,
     },
-    description: '',
+    description: "",
     photos: [],
   });
 
@@ -90,15 +90,15 @@ function EventDetail(props) {
   const handleDelete = async (id) => {
     setIsLoading(true);
     try {
-      let token = localStorage.getItem('token');
+      let token = localStorage.getItem("token");
       await axios.delete(`/api/reports/${id}`, {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: token,
         },
       });
       setIsLoading(false);
-      history.push('/');
+      history.push("/");
     } catch (err) {
       setIsLoading(false);
       console.log(err);
@@ -110,7 +110,7 @@ function EventDetail(props) {
       {isLoading && <Spinner />}
       <CardHeader
         avatar={
-          <Avatar aria-label='recipe' className={classes.avatar}>
+          <Avatar aria-label="recipe" className={classes.avatar}>
             R
           </Avatar>
         }
@@ -123,20 +123,20 @@ function EventDetail(props) {
       />
       {photos.length ? <ImageCarousel photos={photos} /> : null}
       <CardContent>
-        <Typography variant='body2' color='textSecondary' component='p'>
+        <Typography variant="body2" color="textSecondary" component="p">
           {report.description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label='add to favorites'>
+        <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label='share'>
+        <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        <IconButton aria-label='share'>edit</IconButton>
+        <IconButton aria-label="share">edit</IconButton>
         <IconButton
-          aria-label='share'
+          aria-label="share"
           onClick={() => {
             handleDelete(report._id);
           }}
@@ -150,12 +150,12 @@ function EventDetail(props) {
           })}
           onClick={handleExpandClick}
           aria-expanded={expanded}
-          aria-label='show more'
+          aria-label="show more"
         >
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
-      <Collapse in={expanded} timeout='auto' unmountOnExit>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>comments:</Typography>
           <Typography paragraph>comment 1: comment 2:</Typography>
