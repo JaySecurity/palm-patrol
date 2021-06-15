@@ -15,8 +15,8 @@ import ShareIcon from '@material-ui/icons/Share';
 import axios from 'axios';
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import Spinner from '../Spinner/Spinner';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -42,6 +42,8 @@ const useStyles = makeStyles((theme) => ({
 function EventDetail(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const history = useHistory();
   const [report, setReport] = useState({
     user: '',
     title: '',
@@ -58,13 +60,16 @@ function EventDetail(props) {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
+    setIsLoading(true);
     try {
       const res = await axios.get(`/api/reports/${props.match.params.id}`);
       setReport(res.data);
-      console.log(report);
+      setIsLoading(false);
     } catch (err) {
+      setIsLoading(false);
       console.log(err);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleExpandClick = () => {
@@ -72,22 +77,26 @@ function EventDetail(props) {
   };
 
   const handleDelete = async (id) => {
+    setIsLoading(true);
     try {
       let token = localStorage.getItem('token');
-      const res = await axios.delete(`/api/reports/${id}`, {
+      await axios.delete(`/api/reports/${id}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: token,
         },
       });
-      console.log(res.data);
+      setIsLoading(false);
+      history.push('/');
     } catch (err) {
+      setIsLoading(false);
       console.log(err);
     }
   };
 
   return (
     <Card className={classes.root}>
+      {isLoading && <Spinner />}
       <CardHeader
         avatar={
           <Avatar aria-label='recipe' className={classes.avatar}>

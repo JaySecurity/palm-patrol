@@ -9,7 +9,6 @@ function EventList(props) {
   useEffect(async () => {
     try {
       let allReports = await axios.get('/api/reports/');
-      console.log(allReports.data);
       setReports([...allReports.data]);
     } catch (err) {}
   }, [props.bounds]);

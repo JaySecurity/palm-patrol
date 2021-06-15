@@ -17,10 +17,9 @@ function SignUp() {
   const [confirm, setConfirm] = useState('');
   const [msg, setMsg] = useState(null);
   const history = useHistory();
-  const [user, setUser] = useContext(UserContext);
+  const [, setUser] = useContext(UserContext);
 
   const handleSubmit = async (e) => {
-    console.log('hello');
     e.preventDefault();
     setMsg(null);
     try {
@@ -37,7 +36,6 @@ function SignUp() {
       const validUser = res.data.decoded.user;
       setUser(validUser);
       history.push('/');
-      console.log('complited signup');
     } catch (e) {
       setUser(null);
       let {

@@ -35,10 +35,6 @@ function EventListItem({ report }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -74,13 +70,3 @@ function EventListItem({ report }) {
 }
 
 export default EventListItem;
-
-{
-  /* <div>
-    <h1>{report.title}detail:</h1>
-
-    <span>Date: {report.incidentData}</span>
-    <span>Category: {report.category}</span>
-    <span>Description: {report.description}</span>
-  </div>; */
-}

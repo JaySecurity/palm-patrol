@@ -29,4 +29,18 @@ const uploadToS3 = (file) => {
   });
 };
 
-module.exports = { uploadToS3 };
+const deleteS3File = (filename) => {
+  const params = {
+    Bucket: AWSCredentials.bucketName,
+    Key: filename,
+  };
+
+  return new Promise((resolve, reject) => {
+    s3.deleteObject(params, function (err, data) {
+      if (err) reject(err);
+      if (data) resolve(data);
+    });
+  });
+};
+
+module.exports = { uploadToS3, deleteS3File };

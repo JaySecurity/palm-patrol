@@ -17,7 +17,7 @@ import { UserContext } from './context/UserContext';
 import ReportsPage from './pages/ReportsPage/ReportsPage';
 
 function App() {
-  const [user, setUser] = useContext(UserContext);
+  const [, setUser] = useContext(UserContext);
 
   useEffect(async () => {
     let token = localStorage.getItem('token');
@@ -43,15 +43,15 @@ function App() {
             <Route path='/SignUp' render={(props) => <SignUp {...props} />} />
             <Route path='/Login' render={(props) => <Login {...props} />} />
             <Route
-              path='/AddEvent'
-              render={(props) => <AddEvent {...props} category='Theft' />}
+              path='/report/add/detail'
+              render={(props) => <AddEvent {...props} />}
             />
             <Route
               path='/Comments'
               render={(props) => <Comments {...props} />}
             />
             <Route
-              path='/EventCategories'
+              path='/report/add'
               render={(props) => <EventCategories {...props} />}
             />
             <Route
