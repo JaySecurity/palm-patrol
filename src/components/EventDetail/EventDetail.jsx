@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+
 import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -25,17 +26,17 @@ const useStyles = makeStyles((theme) => ({
   root: {},
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: "56.25%", // 16:9
   },
   expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.shortest,
     }),
   },
   expandOpen: {
-    transform: 'rotate(180deg)',
+    transform: "rotate(180deg)",
   },
   avatar: {
     backgroundColor: red[500],
@@ -50,16 +51,16 @@ function EventDetail(props) {
   const history = useHistory();
   const [photos, setPhotos] = useState([]);
   const [report, setReport] = useState({
-    user: '',
-    title: '',
-    incidentData: '',
-    category: '',
+    user: "",
+    title: "",
+    incidentData: "",
+    category: "",
     location: {
-      address: '',
+      address: "",
       lat: 0,
       long: 0,
     },
-    description: '',
+    description: "",
     photos: [],
   });
 
@@ -93,15 +94,15 @@ function EventDetail(props) {
   const handleDelete = async (id) => {
     setIsLoading(true);
     try {
-      let token = localStorage.getItem('token');
+      let token = localStorage.getItem("token");
       await axios.delete(`/api/reports/${id}`, {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: token,
         },
       });
       setIsLoading(false);
-      history.push('/');
+      history.push("/");
     } catch (err) {
       setIsLoading(false);
       console.log(err);
@@ -113,7 +114,7 @@ function EventDetail(props) {
       {isLoading && <Spinner />}
       <CardHeader
         avatar={
-          <Avatar aria-label='recipe' className={classes.avatar}>
+          <Avatar aria-label="recipe" className={classes.avatar}>
             R
           </Avatar>
         }
@@ -126,7 +127,7 @@ function EventDetail(props) {
       />
       {photos.length ? <ImageCarousel photos={photos} /> : null}
       <CardContent>
-        <Typography variant='body2' color='textSecondary' component='p'>
+        <Typography variant="body2" color="textSecondary" component="p">
           {report.description}
         </Typography>
       </CardContent>
@@ -146,19 +147,18 @@ function EventDetail(props) {
             </IconButton>
           </>
         ) : null}
-
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
           })}
           onClick={handleExpandClick}
           aria-expanded={expanded}
-          aria-label='show more'
+          aria-label="show more"
         >
           <CommentIcon />
         </IconButton>
       </CardActions>
-      <Collapse in={expanded} timeout='auto' unmountOnExit>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>comments:</Typography>
           <Typography paragraph>comment 1: comment 2:</Typography>

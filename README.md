@@ -13,14 +13,12 @@ create an event and add pictures.
 
 React
 Node.js
-Express ???
 Leaflet.JS
 Esri Leaflet API
 AWS S3 (Image hosting)
 Javascript ES6
 CSS3
 HTML 5.0
-Jquery
 Google Fonts
 material-ui
 mongoose
