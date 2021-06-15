@@ -32,12 +32,10 @@ async function create(req, res) {
         );
       } else {
         let imgData = await uploadToS3(files);
-        console.log(imgData);
         await report.photos.push({ key: imgData.Key, url: imgData.Location });
       }
     }
     let newReport = await Report.create(report);
-    console.log(newReport);
     res.status(201).json({ report: newReport });
   } catch (err) {
     console.log(err);
