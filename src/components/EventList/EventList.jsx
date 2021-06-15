@@ -24,16 +24,16 @@ function EventList(props) {
     // call to api for all events in the bounds of the map
   }, [props.bounds]);
 
-  // const deleteReport = () => {
-  //   alert("deleted button clicked");
-  // };
+  const deleteReport = () => {
+    alert("deleted button clicked");
+  };
 
   return (
     <div>
       <h1>Recent Reports</h1>
       {reports.map((report) => (
         <Link to={`/report/${report._id}`}>
-          <EventListItem key={report._id} report={report} />
+          <EventListItem report={report} />
         </Link>
       ))}
     </div>
