@@ -1,5 +1,6 @@
 const Report = require('../../models/Report');
-const { uploadToS3 } = require('../../utils/awsUtils');
+const { uploadToS3, deleteS3File } = require('../../utils/awsUtils');
+
 async function all(req, res) {
   try {
     const reports = await Report.find({});
@@ -20,19 +21,19 @@ async function create(req, res) {
     if (req.files) {
       files = req.files.files;
       if (files.length > 1) {
-        console.log(files);
         await Promise.all(
           files.map(async (file) => {
             let imgData = await uploadToS3(file);
             await report.photos.push({
-              key: imgData.key,
+              key: imgData.Key,
               url: imgData.Location,
             });
           })
         );
       } else {
         let imgData = await uploadToS3(files);
-        await report.photos.push({ key: imgData.key, url: imgData.Location });
+        console.log(imgData);
+        await report.photos.push({ key: imgData.Key, url: imgData.Location });
       }
     }
     let newReport = await Report.create(report);
@@ -59,7 +60,13 @@ async function getOne(req, res) {
 async function deleteOne(req, res) {
   try {
     const report = await Report.findById(req.params.id);
-    console.log(report);
+    await Promise.all(
+      report.photos.map(async (file) => {
+        let data = await deleteS3File(file.key);
+      })
+    );
+    await report.delete();
+
     res.status(200).json({ msg: 'Report Deleted' });
   } catch (err) {
     console.log(err);
