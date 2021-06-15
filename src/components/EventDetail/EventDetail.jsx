@@ -1,11 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-<<<<<<< HEAD
 import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
 import Collapse from "@material-ui/core/Collapse";
 import { red } from "@material-ui/core/colors";
 import IconButton from "@material-ui/core/IconButton";
@@ -20,27 +18,6 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Spinner from "../Spinner/Spinner";
 import ImageCarousel from "../ImageCarousel/ImageCarousel";
-=======
-import Avatar from '@material-ui/core/Avatar';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
-import Collapse from '@material-ui/core/Collapse';
-import { red } from '@material-ui/core/colors';
-import IconButton from '@material-ui/core/IconButton';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import axios from 'axios';
-import clsx from 'clsx';
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import Spinner from '../Spinner/Spinner';
-import ImageCarousel from '../ImageCarousel/ImageCarousel';
->>>>>>> 6bb99c396c28d821509d94431fabd16c77fca0bf
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -104,10 +81,6 @@ function EventDetail(props) {
     }));
 
     setPhotos(imgArr);
-<<<<<<< HEAD
-    console.log("ImgArr", imgArr);
-=======
->>>>>>> 6bb99c396c28d821509d94431fabd16c77fca0bf
   }, [report]);
 
   const handleExpandClick = () => {
