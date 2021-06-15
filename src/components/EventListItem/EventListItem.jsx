@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function EventListItem(props) {
+function EventListItem({ report }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 

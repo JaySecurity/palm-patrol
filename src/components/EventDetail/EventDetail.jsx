@@ -48,10 +48,8 @@ function EventDetail(props) {
   useEffect(async () => {
     try {
       const res = await axios.get(`/api/reports/${props.match.params.id}`);
-      console.log(res);
-      if (res.data) {
-        setReport(res.data);
-      }
+      setReport(res.data);
+      console.log(report);
     } catch (err) {
       console.log(err);
     }
@@ -123,13 +121,3 @@ function EventDetail(props) {
 }
 
 export default EventDetail;
-
-{
-  /* <div>
-    <h1>{report.title}detail:</h1>
-
-    <span>Date: {report.incidentData}</span>
-    <span>Category: {report.category}</span>
-    <span>Description: {report.description}</span>
-  </div>; */
-}
