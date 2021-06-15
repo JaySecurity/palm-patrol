@@ -15,7 +15,7 @@ function AddEvent(props) {
   const [user, setUser] = useContext(UserContext);
   const [files, setFiles] = useState([]);
   const [report, setReport] = useState({
-    user,
+    user: user._id,
     title: '',
     incidentData: '',
     category: props.category,
@@ -99,7 +99,11 @@ function AddEvent(props) {
           Authorization: token,
         },
       });
-      console.log(res);
+      if (res.status === 201) {
+        console.log(res.data.report);
+        setIsLoading(false);
+        history.push('/');
+      }
     } catch (err) {
       console.log(err);
     }

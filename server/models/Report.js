@@ -20,7 +20,12 @@ const reportSchema = new Schema(
     },
     location: { address: String, lat: Number, long: Number },
     description: String,
-    photos: [],
+    photos: [
+      {
+        key: String,
+        url: String,
+      },
+    ],
     comments: [commentSchema],
   },
 
