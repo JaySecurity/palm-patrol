@@ -59,8 +59,19 @@ function EventDetail(props) {
     setExpanded(!expanded);
   };
 
-  const deleteReport = () => {
-    alert('deleted button clicked');
+  const handleDelete = async (id) => {
+    try {
+      let token = localStorage.getItem('token');
+      const res = await axios.delete(`/api/reports/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+      });
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -97,7 +108,14 @@ function EventDetail(props) {
           <ShareIcon />
         </IconButton>
         <IconButton aria-label='share'>edit</IconButton>
-        <IconButton aria-label='share'>delete</IconButton>
+        <IconButton
+          aria-label='share'
+          onClick={() => {
+            handleDelete(report._id);
+          }}
+        >
+          delete
+        </IconButton>
 
         <IconButton
           className={clsx(classes.expand, {

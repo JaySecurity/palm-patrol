@@ -85,9 +85,14 @@ async function getOne(req, res) {
   }
 }
 
-function deleteReport(req, res) {
-  console.log('delete button clicked');
-  res.send('deleted');
+async function deleteOne(req, res) {
+  try {
+    const report = await Report.findById(req.params.id);
+    console.log(report);
+    res.status(200).json({ msg: 'Report Deleted' });
+  } catch (err) {
+    console.log(err);
+  }
 }
 
-module.exports = { all, create, getOne };
+module.exports = { all, create, getOne, deleteOne };
