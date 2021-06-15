@@ -25,8 +25,10 @@ app.listen(port, function () {
 });
 
 // catch all route
+
 app.use('/api/users/', userRouter);
 app.use('/api/reports/', reportRouter);
+
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });

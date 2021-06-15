@@ -14,6 +14,10 @@ function EventList(props) {
     } catch (err) {}
   }, [props.bounds]);
 
+  // const deleteReport = () => {
+  //   alert("deleted button clicked");
+  // };
+
   return (
     <div>
       <h1>Recent Reports</h1>

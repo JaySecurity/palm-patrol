@@ -31,7 +31,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function EventListItem({ report }) {
+let report = {
+  title: "car accident",
+  incidentData: "September 14, 2016",
+  // category: "accident",
+  description:
+    "car accident on Ambleside street Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo quis totam, voluptate ipsa eligendi aperiam voluptates facere! Architecto veniam illum adipisci nobis fuga corporis ut.",
+};
+function EventListItem() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 

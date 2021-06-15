@@ -85,4 +85,9 @@ async function getOne(req, res) {
   }
 }
 
+function deleteReport(req, res) {
+  console.log('delete button clicked');
+  res.send('deleted');
+}
+
 module.exports = { all, create, getOne };

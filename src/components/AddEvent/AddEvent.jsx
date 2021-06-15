@@ -18,7 +18,7 @@ function AddEvent(props) {
     user: user._id,
     title: '',
     incidentData: '',
-    category: props.category,
+    category: props.location.category,
     location: {
       address: '',
       lat: 0,

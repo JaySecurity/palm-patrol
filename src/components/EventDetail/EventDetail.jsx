@@ -3,6 +3,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
 import Collapse from '@material-ui/core/Collapse';
 import { red } from '@material-ui/core/colors';
 import IconButton from '@material-ui/core/IconButton';
@@ -14,6 +15,9 @@ import ShareIcon from '@material-ui/icons/Share';
 import axios from 'axios';
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { Link } from 'react-router-dom';
+
 const useStyles = makeStyles((theme) => ({
   root: {},
   media: {
@@ -55,7 +59,14 @@ function EventDetail(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
+  let RReport = {
+    _id: 1,
+    title: 'car accident',
+    incidentData: 'September 14, 2016',
+    // category: "accident",
+    description:
+      'car accident on Ambleside street Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo quis totam, voluptate ipsa eligendi aperiam voluptates facere! Architecto veniam illum adipisci nobis fuga corporis ut.',
+  };
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -64,8 +75,13 @@ function EventDetail(props) {
             R
           </Avatar>
         }
-        title='Test'
+        title={'Shrimp and Chorizo Paella'}
         subheader='September 14, 2016'
+      />
+      <CardMedia
+        className={classes.media}
+        // image="/static/images/cards/paella.jpg"
+        title='Paella dish'
       />
 
       <CardContent>
@@ -83,7 +99,9 @@ function EventDetail(props) {
           <ShareIcon />
         </IconButton>
         <IconButton aria-label='share'>edit</IconButton>
-        <IconButton aria-label='share'>delete</IconButton>
+        <Link to={`/api/reports/${RReport._id}/delete`}>
+          <IconButton aria-label='share'>delete</IconButton>
+        </Link>
 
         <IconButton
           className={clsx(classes.expand, {
