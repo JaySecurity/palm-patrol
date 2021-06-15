@@ -39,7 +39,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function EventDetail(props) {
+function EventDetail({
+  match: {
+    params: { id },
+  },
+}) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [report, setReport] = useState();
@@ -47,7 +51,8 @@ function EventDetail(props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     try {
-      const res = await axios.get(`/api/reports/${props.params.id}`);
+      const res = await axios.get(`/api/reports/${id}`);
+      console.log(res);
       if (res.data) {
         setReport(res.data);
       }
@@ -59,14 +64,11 @@ function EventDetail(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  let RReport = {
-    _id: 1,
-    title: 'car accident',
-    incidentData: 'September 14, 2016',
-    // category: "accident",
-    description:
-      'car accident on Ambleside street Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo quis totam, voluptate ipsa eligendi aperiam voluptates facere! Architecto veniam illum adipisci nobis fuga corporis ut.',
+
+  const deleteReport = () => {
+    alert('deleted button clicked');
   };
+
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -75,8 +77,12 @@ function EventDetail(props) {
             R
           </Avatar>
         }
-        title={'Shrimp and Chorizo Paella'}
-        subheader='September 14, 2016'
+        title={report.title}
+        subheader={`${new Date(
+          report.incidentData
+        ).toLocaleDateString()} - ${new Date(
+          report.incidentData
+        ).toLocaleTimeString()}`}
       />
       <CardMedia
         className={classes.media}
@@ -86,9 +92,7 @@ function EventDetail(props) {
 
       <CardContent>
         <Typography variant='body2' color='textSecondary' component='p'>
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
+          {report.description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -99,9 +103,7 @@ function EventDetail(props) {
           <ShareIcon />
         </IconButton>
         <IconButton aria-label='share'>edit</IconButton>
-        <Link to={`/api/reports/${RReport._id}/delete`}>
-          <IconButton aria-label='share'>delete</IconButton>
-        </Link>
+        <IconButton aria-label='share'>delete</IconButton>
 
         <IconButton
           className={clsx(classes.expand, {
