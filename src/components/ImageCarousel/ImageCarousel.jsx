@@ -9,7 +9,9 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 400,
+    width: '90vw',
+    margin: '0 auto',
+    maxWidth: 800,
     flexGrow: 1,
   },
   header: {
@@ -20,8 +22,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.default,
   },
   img: {
-    height: 255,
-    maxWidth: 400,
+    // height: 255,
+    width: '90vw',
+    maxWidth: 800,
     overflow: 'hidden',
     display: 'block',
     width: '100%',
