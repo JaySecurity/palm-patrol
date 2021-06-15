@@ -3,9 +3,7 @@ import { Icon } from 'leaflet';
 import { useRef, useState } from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 
-function Leaflet(props) {
-  const [markers, setMarkers] = useState([]);
-
+function Leaflet({ setBounds, markers }) {
   const mapRef = useRef(null);
   const theftPin = new Icon({
     iconUrl: '/images/red-pin.png',
@@ -36,7 +34,7 @@ function Leaflet(props) {
       maxLat: mapBounds._northEast.lat,
       maxLong: mapBounds._northEast.lng,
     };
-    props.setBounds({ ...bounds });
+    setBounds({ ...bounds });
   };
 
   return (
@@ -51,11 +49,16 @@ function Leaflet(props) {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
       />
-      {markers.map((marker) => {
+      {markers.map((marker, i) => {
         return (
-          <Marker position={[...marker]} icon={theftPin}>
+          <Marker
+            key={i}
+            position={[marker.location.lat, marker.location.long]}
+            icon={theftPin}
+          >
             <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
+              <h3>{marker.title}</h3>
+              <h4>{marker.category}</h4>
             </Popup>
           </Marker>
         );
