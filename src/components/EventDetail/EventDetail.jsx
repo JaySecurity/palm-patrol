@@ -7,17 +7,19 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Collapse from '@material-ui/core/Collapse';
 import { red } from '@material-ui/core/colors';
 import IconButton from '@material-ui/core/IconButton';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
+import CommentIcon from '@material-ui/icons/Comment';
 import axios from 'axios';
 import clsx from 'clsx';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Spinner from '../Spinner/Spinner';
 import ImageCarousel from '../ImageCarousel/ImageCarousel';
+import { UserContext } from '../../context/UserContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -41,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function EventDetail(props) {
+  const [user] = useContext(UserContext);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -128,21 +131,21 @@ function EventDetail(props) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label='add to favorites'>
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label='share'>
-          <ShareIcon />
-        </IconButton>
-        <IconButton aria-label='share'>edit</IconButton>
-        <IconButton
-          aria-label='share'
-          onClick={() => {
-            handleDelete(report._id);
-          }}
-        >
-          delete
-        </IconButton>
+        {user && user._id === report.user ? (
+          <>
+            <IconButton aria-label='share'>
+              <EditIcon />
+            </IconButton>
+            <IconButton
+              aria-label='share'
+              onClick={() => {
+                handleDelete(report._id);
+              }}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </>
+        ) : null}
 
         <IconButton
           className={clsx(classes.expand, {
@@ -152,7 +155,7 @@ function EventDetail(props) {
           aria-expanded={expanded}
           aria-label='show more'
         >
-          <ExpandMoreIcon />
+          <CommentIcon />
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout='auto' unmountOnExit>
