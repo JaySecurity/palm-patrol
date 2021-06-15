@@ -14,68 +14,66 @@ import Avatar from "@material-ui/core/Avatar";
 import ImageIcon from "@material-ui/icons/Image";
 import WorkIcon from "@material-ui/icons/Work";
 import BeachAccessIcon from "@material-ui/icons/BeachAccess";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
+import { Link } from "react-router-dom";
+import "./EventCategories.css";
 
 export default function EventCategories() {
-  const classes = useStyles();
-
   return (
-    <List className={classes.root}>
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <DriveEtaIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="accident" />
-      </ListItem>
+    <List className="categoryItem">
+      <Link to={{ pathname: "/AddEvent", category: "Accident" }}>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar>
+              <DriveEtaIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText primary="accident" />
+        </ListItem>
+      </Link>
 
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <AssignmentLateIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Theft" />
-      </ListItem>
+      <Link to={{ pathname: "/AddEvent", category: "Theft" }}>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar>
+              <AssignmentLateIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText primary="Theft" />
+        </ListItem>
+      </Link>
 
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <WorkIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Lost&Found" />
-      </ListItem>
+      <Link to={{ pathname: "/AddEvent", category: "Lost&Found" }}>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar>
+              <WorkIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText primary="Lost&Found" />
+        </ListItem>
+      </Link>
 
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <LibraryAddIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Other" />
-      </ListItem>
+      <Link to={{ pathname: "/AddEvent", category: "Vandalism" }}>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar>
+              <WorkIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText primary="Vandalism" />
+        </ListItem>
+      </Link>
+
+      <Link to={{ pathname: "/AddEvent", category: "Other" }}>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar>
+              <LibraryAddIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText primary="Other" />
+        </ListItem>
+      </Link>
     </List>
   );
 }
-// function EventCategories() {
-//   return (
-//     <div>
-//       car accident
-//       <DriveEtaIcon />
-//       Theft
-//       <DeckIcon />
-//       LostFound
-//       <AssignmentLateIcon />
-//       others <LibraryAddIcon />
-//     </div>
-//   );
-// }

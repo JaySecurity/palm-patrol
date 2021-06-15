@@ -24,6 +24,10 @@ function EventList(props) {
     // call to api for all events in the bounds of the map
   }, [props.bounds]);
 
+  // const deleteReport = () => {
+  //   alert("deleted button clicked");
+  // };
+
   return (
     <div>
       <h1>Recent Reports</h1>
