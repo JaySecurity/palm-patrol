@@ -64,7 +64,7 @@ function EventDetail(props) {
             R
           </Avatar>
         }
-        title={report.title || 'Test'}
+        title='Test'
         subheader='September 14, 2016'
       />
 
