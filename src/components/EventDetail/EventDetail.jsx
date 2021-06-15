@@ -38,21 +38,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function EventDetail({ report, props }) {
+function EventDetail(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  let RReport = {
-    _id: 1,
-    title: "car accident",
-    incidentData: "September 14, 2016",
-    // category: "accident",
-    description:
-      "car accident on Ambleside street Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo quis totam, voluptate ipsa eligendi aperiam voluptates facere! Architecto veniam illum adipisci nobis fuga corporis ut.",
-  };
+
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -84,9 +77,11 @@ function EventDetail({ report, props }) {
           <ShareIcon />
         </IconButton>
         <IconButton aria-label="share">edit</IconButton>
-        <Link to={`/api/reports/${RReport._id}/delete`}>
-          <IconButton aria-label="share">delete</IconButton>
-        </Link>
+        {/* <Link to={`/api/reports/${RReport._id}/delete`}> */}
+        <IconButton onClick={() => {}} aria-label="share">
+          delete
+        </IconButton>
+        {/* </Link> */}
 
         <IconButton
           className={clsx(classes.expand, {

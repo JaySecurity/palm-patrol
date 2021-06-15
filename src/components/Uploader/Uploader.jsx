@@ -49,14 +49,16 @@ function Uploader({ files, setFiles }) {
           onChange={handleChange}
         />
         <label htmlFor='image-upload'>
-          <Button
-            variant='contained'
-            color='primary'
-            component='span'
-            endIcon={<PhotoCamera />}
-          >
-            Upload Photo
-          </Button>
+          {files.length < 4 ? (
+            <Button
+              variant='contained'
+              color='primary'
+              component='span'
+              endIcon={<PhotoCamera />}
+            >
+              Upload Photo
+            </Button>
+          ) : null}
         </label>
       </form>
     </div>
