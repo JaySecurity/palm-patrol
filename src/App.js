@@ -55,7 +55,7 @@ function App() {
               render={(props) => <EventCategories {...props} />}
             />
             <Route
-              path='/EventDetail'
+              path='/report/:id'
               render={(props) => <EventDetail {...props} />}
             />
             <Route
@@ -63,13 +63,12 @@ function App() {
               render={(props) => <EventListItem {...props} />}
             />
 
-            <Route path="/" exact render={(props) => <ReportsPage />} />
-            <Route path="/reports" render={(props) => <ReportsPage />} />
+            <Route path='/' exact render={(props) => <ReportsPage />} />
+            <Route path='/reports' render={(props) => <ReportsPage />} />
             <Route
-              path="/EventCategories"
+              path='/EventCategories'
               render={(props) => <EventCategories />}
             />
-
           </Switch>
           <nav>
             <Nav />
