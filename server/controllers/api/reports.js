@@ -1,23 +1,24 @@
 const Report = require("../../models/Report");
 
-module.exports = {
-  all,
-  deleteReport,
-};
+module.exports = { all, create };
 
 async function all(req, res) {
   try {
     const reports = await Report.find({});
     res.status(200).json(reports);
-  } catch (e) {
-    console.log(e);
-    res.status(500).json(e);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
   }
 }
 
 async function create(req, res) {
   try {
-  } catch (e) {}
+    console.log(req);
+    res.status(201).json({ msg: "Created" });
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 function deleteReport(req, res) {

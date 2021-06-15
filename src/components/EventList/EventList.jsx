@@ -33,7 +33,7 @@ function EventList(props) {
       <h1>Recent Reports</h1>
       {reports.map((report) => (
         <Link to={`/report/${report._id}`}>
-          <EventListItem report={report} />
+          <EventListItem key={report._id} report={report} />
         </Link>
       ))}
     </div>
