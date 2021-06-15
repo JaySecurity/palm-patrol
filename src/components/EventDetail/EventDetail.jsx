@@ -39,11 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function EventDetail({
-  match: {
-    params: { id },
-  },
-}) {
+function EventDetail(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [report, setReport] = useState();
@@ -51,7 +47,7 @@ function EventDetail({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     try {
-      const res = await axios.get(`/api/reports/${id}`);
+      const res = await axios.get(`/api/reports/${props.match.params.id}`);
       console.log(res);
       if (res.data) {
         setReport(res.data);
