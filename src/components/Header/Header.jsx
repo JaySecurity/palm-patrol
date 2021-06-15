@@ -1,15 +1,15 @@
-import React from "react";
-import "./Header.css";
-import { Link } from "react-router-dom";
+import React from 'react';
+import './Header.css';
 
 function Header() {
   return (
     <div>
-      <header className="header-logo">
+      <header className='header-logo'>
         <img
-          id="logo"
-          src="./../../images/binoculars.png"
-          style={{ width: "4%" }}
+          id='logo'
+          alt='Logo'
+          src='./../../images/binoculars.png'
+          style={{ width: '4%' }}
         ></img>
         | Palm Patrol
       </header>

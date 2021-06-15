@@ -12,7 +12,7 @@ import './AddEvent.css';
 
 function AddEvent(props) {
   //const [location, setLocation] = useState('');
-  const [user, setUser] = useContext(UserContext);
+  const [user] = useContext(UserContext);
   const [files, setFiles] = useState([]);
   const [report, setReport] = useState({
     user: user._id,
@@ -72,14 +72,12 @@ function AddEvent(props) {
       let address = report.location.address;
       let result = await provider.search({ query: address });
       result = result[0];
-      console.log(result);
       address = result.label;
       const lat = result.y;
       const long = result.x;
       setReport({ ...report, location: { address, lat, long } });
-      console.log(report);
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log(err);
     }
     setIsLoading(false);
   };
@@ -100,7 +98,6 @@ function AddEvent(props) {
         },
       });
       if (res.status === 201) {
-        console.log(res.data.report);
         setIsLoading(false);
         history.push('/');
       }

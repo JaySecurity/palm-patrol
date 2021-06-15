@@ -31,20 +31,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-let report = {
-  title: "car accident",
-  incidentData: "September 14, 2016",
-  // category: "accident",
-  description:
-    "car accident on Ambleside street Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo quis totam, voluptate ipsa eligendi aperiam voluptates facere! Architecto veniam illum adipisci nobis fuga corporis ut.",
-};
-function EventListItem() {
+function EventListItem({ report }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   return (
     <Card className={classes.root}>
@@ -81,13 +70,3 @@ function EventListItem() {
 }
 
 export default EventListItem;
-
-{
-  /* <div>
-    <h1>{report.title}detail:</h1>
-
-    <span>Date: {report.incidentData}</span>
-    <span>Category: {report.category}</span>
-    <span>Description: {report.description}</span>
-  </div>; */
-}

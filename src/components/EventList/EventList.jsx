@@ -9,20 +9,15 @@ function EventList(props) {
   useEffect(async () => {
     try {
       let allReports = await axios.get('/api/reports/');
-      console.log(allReports.data);
       setReports([...allReports.data]);
     } catch (err) {}
   }, [props.bounds]);
-
-  // const deleteReport = () => {
-  //   alert("deleted button clicked");
-  // };
 
   return (
     <div>
       <h1>Recent Reports</h1>
       {reports.map((report) => (
-        <Link to={`/report/${report._id}`}>
+        <Link key={report._id} to={`/report/${report._id}`}>
           <EventListItem key={report._id} report={report} />
         </Link>
       ))}
