@@ -4,7 +4,6 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
 import Collapse from '@material-ui/core/Collapse';
 import { red } from '@material-ui/core/colors';
 import IconButton from '@material-ui/core/IconButton';
@@ -67,7 +66,6 @@ function EventDetail(props) {
     try {
       const res = await axios.get(`/api/reports/${props.match.params.id}`);
       await setReport(res.data);
-      console.log(res.data);
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
@@ -83,7 +81,6 @@ function EventDetail(props) {
     }));
 
     setPhotos(imgArr);
-    console.log('ImgArr', imgArr);
   }, [report]);
 
   const handleExpandClick = () => {
@@ -124,10 +121,7 @@ function EventDetail(props) {
           report.incidentData
         ).toLocaleTimeString()}`}
       />
-      <CardMedia>
-        {photos.length ? <ImageCarousel photos={photos} /> : null}
-      </CardMedia>
-
+      {photos.length ? <ImageCarousel photos={photos} /> : null}
       <CardContent>
         <Typography variant='body2' color='textSecondary' component='p'>
           {report.description}
