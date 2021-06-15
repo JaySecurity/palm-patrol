@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -17,6 +18,7 @@ import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Spinner from '../Spinner/Spinner';
+import ImageCarousel from '../ImageCarousel/ImageCarousel';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -44,6 +46,7 @@ function EventDetail(props) {
   const [expanded, setExpanded] = React.useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
+  const [photos, setPhotos] = useState([]);
   const [report, setReport] = useState({
     user: '',
     title: '',
@@ -63,7 +66,8 @@ function EventDetail(props) {
     setIsLoading(true);
     try {
       const res = await axios.get(`/api/reports/${props.match.params.id}`);
-      setReport(res.data);
+      await setReport(res.data);
+      console.log(res.data);
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
@@ -71,6 +75,16 @@ function EventDetail(props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(async () => {
+    let imgArr = await report.photos.map((photo, i) => ({
+      label: `Photo ${i + 1}`,
+      imgPath: photo.url,
+    }));
+
+    setPhotos(imgArr);
+    console.log('ImgArr', imgArr);
+  }, [report]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -110,11 +124,9 @@ function EventDetail(props) {
           report.incidentData
         ).toLocaleTimeString()}`}
       />
-      <CardMedia
-        className={classes.media}
-        // image="/static/images/cards/paella.jpg"
-        title='Paella dish'
-      />
+      <CardMedia>
+        {photos.length ? <ImageCarousel photos={photos} /> : null}
+      </CardMedia>
 
       <CardContent>
         <Typography variant='body2' color='textSecondary' component='p'>
