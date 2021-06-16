@@ -1,5 +1,5 @@
-const Report = require('../../models/Report');
-const { uploadToS3, deleteS3File } = require('../../utils/awsUtils');
+const Report = require("../../models/Report");
+const { uploadToS3, deleteS3File } = require("../../utils/awsUtils");
 
 async function all(req, res) {
   try {
@@ -46,12 +46,12 @@ async function getOne(req, res) {
   try {
     const report = await Report.findById(req.params.id);
     if (!report) {
-      return res.status(404).json({ msg: 'Report Not Found' });
+      return res.status(404).json({ msg: "Report Not Found" });
     }
     res.status(200).json(report);
   } catch (err) {
     console.log(err);
-    res.status(500).json({ msg: 'Something Went Wrong!', error: err });
+    res.status(500).json({ msg: "Something Went Wrong!", error: err });
   }
 }
 
@@ -65,10 +65,25 @@ async function deleteOne(req, res) {
     );
     await report.delete();
 
-    res.status(200).json({ msg: 'Report Deleted' });
+    res.status(200).json({ msg: "Report Deleted" });
   } catch (err) {
     console.log(err);
   }
 }
 
-module.exports = { all, create, getOne, deleteOne };
+async function addComment(req, res) {
+  try {
+    const report = await Report.findById(req.params.id);
+    if (!report) {
+      return res.status(404).json({ msg: "report not found" });
+    }
+    report.comments.push(req.body);
+    report.save();
+    console.log(report);
+    res.status(201).json(report);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+module.exports = { all, create, getOne, deleteOne, addComment };
