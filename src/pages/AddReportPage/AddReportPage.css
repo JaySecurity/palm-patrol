@@ -1,4 +1,4 @@
-/* .ReportForm {
+.AddReportPage {
   display: flex;
   position: relative;
   height: 100%;
@@ -9,14 +9,4 @@
 
 h1 {
   margin: 1rem;
-} */
-.add-form {
-  padding: 0 2rem;
-  width: 25rem;
-  max-width: 85vw;
-}
-
-.form-group {
-  margin-bottom: 1rem;
-  width: 90%;
 }

@@ -10,6 +10,7 @@ import Login from './components/Login/Login';
 import Nav from './components/Nav/Nav';
 import SignUp from './components/SignUp/SignUp';
 import ReportsPage from './pages/ReportsPage/ReportsPage';
+import AddReportPage from './pages/AddReportPage/AddReportPage';
 
 function App() {
   return (
@@ -21,11 +22,11 @@ function App() {
             <Route path='/login' render={(props) => <Login {...props} />} />
             <Route path='/signup' render={(props) => <SignUp {...props} />} />
             <Route
-              path='/report/add/detail'
-              render={(props) => <ReportForm {...props} />}
+              path='/report/add'
+              render={(props) => <AddReportPage {...props} />}
             />
             <Route
-              path='/report/add'
+              path='/report/category'
               render={(props) => <ReportCategories {...props} />}
             />
             <Route
