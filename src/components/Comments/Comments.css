@@ -7,10 +7,3 @@
 #comments-text {
   padding: 7px;
 }
-
-#add-comment-icon {
-  display: flex;
-  align-items: center;
-  margin: auto;
-  transform: scale(1.5);
-}
