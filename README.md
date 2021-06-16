@@ -22,7 +22,7 @@ Users are able to see reports from community members about thefts, vandalism, lo
 - CSS
 - HTML
 
-[ERD](../../Docs/ERD.pdf)  
+[ERD](./Docs/erd.pdf)  
 
 [Trello Board](https://trello.com/b/tLy67cfk/palmpatrol)
 
