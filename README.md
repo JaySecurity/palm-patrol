@@ -22,7 +22,7 @@ Users are able to see reports from community members about thefts, vandalism, lo
 - CSS
 - HTML
 
-[ERD](./Docs/erd.pdf)  
+[ERD](./Docs/erd.pdf)
 
 [Trello Board](https://trello.com/b/tLy67cfk/palmpatrol)
 
@@ -34,6 +34,7 @@ Users are able to see reports from community members about thefts, vandalism, lo
 ### Future Features:
 
 - [ ] Show reports based on map boundaries
+- [ ] Filter reports by category
 - [ ] Allow user to update their profile, change their password
 - [ ] Add notifications for users to see if there any comments to their report.
 - [ ] Add propagation

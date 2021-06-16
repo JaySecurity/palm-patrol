@@ -10,12 +10,14 @@ body {
 }
 .App {
   color: var(--third-color);
+  margin-top: 8vh;
+  height: 81vh;
+  padding: 0.5rem 0;
   position: relative;
+  overflow-y: auto;
 }
 .container {
-  position: absolute;
-  top: 8vh;
   width: 100%;
-  overflow-y: auto;
-  height: 81vh;
+  margin: 0 auto;
+  max-width: 800px;
 }
