@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ReportDetail(props) {
+  let arrComments = ['awsome', 'bad news', 'so sad', 'my heart is with you'];
   const [user] = useContext(UserContext);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
