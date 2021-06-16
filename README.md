@@ -42,5 +42,5 @@ Users are able to see reports from community members about thefts, vandalism, lo
 
 ### Credits:
 
-Logo - Image by OpenClipart-Vectors from Pixabay
+Logo - Image by OpenClipart-Vectors from Pixabay  
 [freefavicon.com](https://www.freefavicon.com/)
