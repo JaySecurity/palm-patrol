@@ -34,11 +34,11 @@ nav > div:last-child {
 
 .flex-foot a {
   text-decoration: none;
-  color: blue;
+  color: var(--third-color);
 }
 
 .logout-btn {
   background: none;
   border: none;
-  color: blue;
+  color: var(--third-color);
 }

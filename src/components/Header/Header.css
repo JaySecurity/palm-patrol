@@ -12,3 +12,8 @@
   background-color: var(--navbar-color);
   z-index: 2000;
 }
+
+#logo {
+  padding-right: 0.2rem;
+  transform: scale(0.75);
+}
