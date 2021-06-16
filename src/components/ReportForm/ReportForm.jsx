@@ -1,39 +1,8 @@
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import SaveIcon from '@material-ui/icons/Save';
-import axios from 'axios';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
-import React, { useContext, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { UserContext } from '../../context/UserContext';
-import Spinner from '../Spinner/Spinner';
-import Uploader from '../Uploader/Uploader';
 import './ReportForm.css';
 
-function ReportForm(props) {
-  //const [location, setLocation] = useState('');
-  const [user] = useContext(UserContext);
-  const [files, setFiles] = useState([]);
-  const [report, setReport] = useState({
-    user: user._id,
-    title: '',
-    incidentData: '',
-    category: props.location.category,
-    location: {
-      address: '',
-      lat: 0,
-      long: 0,
-    },
-    description: '',
-    photos: [],
-  });
-  const [isLoading, setIsLoading] = useState(false);
-  const history = useHistory();
-
-  useEffect(() => {
-    if (!user) history.push('/login');
-  });
-
+function ReportForm({ report, setReport, setIsLoading }) {
   // GeoSearch Provider
   const provider = new OpenStreetMapProvider({
     params: {
@@ -82,36 +51,10 @@ function ReportForm(props) {
     setIsLoading(false);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    const data = new FormData();
-    files.map((file, i) => data.append(`files`, file));
-    data.append('report', JSON.stringify(report));
-
-    try {
-      let token = localStorage.getItem('token');
-      const res = await axios.post('/api/reports/', data, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: token,
-        },
-      });
-      if (res.status === 201) {
-        setIsLoading(false);
-        history.push('/');
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   return (
     <div className='ReportForm'>
-      {isLoading && <Spinner />}
-      <h1>Add a {report.category} Report</h1>
       <div className='add-form'>
-        <form onSubmit={handleSubmit} autoComplete='off'>
+        <form autoComplete='off'>
           <TextField
             className='form-group'
             required
@@ -158,17 +101,6 @@ function ReportForm(props) {
             onChange={handleChange}
           />
         </form>
-        <Uploader files={files} setFiles={setFiles} />
-        <Button
-          variant='contained'
-          color='primary'
-          size='small'
-          startIcon={<SaveIcon />}
-          className='save-btn'
-          onClick={handleSubmit}
-        >
-          Save
-        </Button>
       </div>
     </div>
   );

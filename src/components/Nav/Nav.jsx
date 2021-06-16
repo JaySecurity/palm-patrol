@@ -45,7 +45,7 @@ function Nav() {
             </Link>
           </div>
           <div id='i-4'>
-            <Link to='/report/add'>
+            <Link to='/report/category'>
               <AddAlarmIcon /> <p>New Report</p>
             </Link>
           </div>
