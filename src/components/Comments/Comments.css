@@ -1,0 +1,16 @@
+#comments-box {
+  background-color: rgb(184, 187, 214, 0.3);
+  border-radius: 7px;
+  margin: 10px;
+}
+
+#comments-text {
+  padding: 7px;
+}
+
+#add-comment-icon {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  transform: scale(1.5);
+}

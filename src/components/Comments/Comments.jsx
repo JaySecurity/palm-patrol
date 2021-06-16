@@ -1,9 +1,10 @@
 import React from "react";
+import "./Comments.css";
 
-function Comments() {
+function Comments(props) {
   return (
-    <div>
-      <h1>Comments</h1>
+    <div id="comments-box">
+      <div id="comments-text">{props.comment}</div>
     </div>
   );
 }
