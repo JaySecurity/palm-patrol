@@ -6,8 +6,8 @@ link:
 
 Features include an easy to use map functionality, coupled with interactive user interface.
 
-as a user you be able to see all event that happend around you in a list or on the map. add comments to the events.
-create an event and add pictures.
+as a user you be able to see all events that happend around you in a list or on the map. add comments to the events.
+create an event and add pictures and delete the event.
 
 ### Built With:
 
