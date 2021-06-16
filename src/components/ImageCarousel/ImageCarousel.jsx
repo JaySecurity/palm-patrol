@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Paper from '@material-ui/core/Paper';
@@ -22,12 +22,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.default,
   },
   img: {
-    // height: 255,
-    width: '90vw',
-    maxWidth: 800,
+    width: '90%',
+    maxWidth: 700,
+    margin: '0 auto',
     overflow: 'hidden',
     display: 'block',
-    width: '100%',
   },
 }));
 

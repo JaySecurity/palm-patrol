@@ -32,9 +32,6 @@ function SignUp() {
       });
       let token = `Bearer ${res.data}`;
       localStorage.setItem('token', token);
-      res = await axios.post('/api/users/verify', { token });
-      const validUser = res.data.decoded.user;
-      setUser(validUser);
       history.push('/');
     } catch (e) {
       setUser(null);

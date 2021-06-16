@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
 import EventList from '../../components/EventList/EventList';
 import Leaflet from '../../components/Map/Map';
 import axios from 'axios';
@@ -8,8 +10,23 @@ function ReportsPage() {
   const [bounds, setBounds] = useState([]);
   const [markers, setMarkers] = useState([]);
   const [reports, setReports] = useState([]);
+  const [, setUser] = useContext(UserContext);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(async () => {
+    let token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const res = await axios.post('/api/users/verify', { token });
+        const validUser = res.data.decoded.user;
+        setUser(validUser);
+      } catch (e) {
+        setUser(null);
+      }
+    } else {
+      setUser(null);
+    }
+  }, []);
+
   useEffect(async () => {
     try {
       let allReports = await axios.get('/api/reports/');
