@@ -6,25 +6,21 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import Collapse from '@material-ui/core/Collapse';
-import { red } from '@material-ui/core/colors';
 import IconButton from '@material-ui/core/IconButton';
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
 import CommentIcon from '@material-ui/icons/Comment';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import axios from 'axios';
 import clsx from 'clsx';
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import Spinner from '../Spinner/Spinner';
-import ImageCarousel from '../ImageCarousel/ImageCarousel';
 import { UserContext } from '../../context/UserContext';
 import Comments from '../Comments/Comments';
-import AddBoxTwoToneIcon from '@material-ui/icons/AddBoxTwoTone';
-import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import ImageCarousel from '../ImageCarousel/ImageCarousel';
+import Spinner from '../Spinner/Spinner';
 const useStyles = makeStyles((theme) => ({
   root: {},
   media: {
