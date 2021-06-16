@@ -1,31 +1,29 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-
+//---------------------material--------
 import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
 import Collapse from "@material-ui/core/Collapse";
-import { red } from "@material-ui/core/colors";
 import IconButton from "@material-ui/core/IconButton";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import CommentIcon from "@material-ui/icons/Comment";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+//-----------------react----------------------------
 import axios from "axios";
 import clsx from "clsx";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import Spinner from "../Spinner/Spinner";
-import ImageCarousel from "../ImageCarousel/ImageCarousel";
+//-----------------components-----------------------
 import { UserContext } from "../../context/UserContext";
-import Comments from "../Comments/Comments";
-import AddBoxTwoToneIcon from "@material-ui/icons/AddBoxTwoTone";
-import AddBoxOutlinedIcon from "@material-ui/icons/AddBoxOutlined";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import AddComment from "../AddComment/AddComment";
+import Comments from "../Comments/Comments";
+import ImageCarousel from "../ImageCarousel/ImageCarousel";
+import Spinner from "../Spinner/Spinner";
+//----------style----------------------------
 const useStyles = makeStyles((theme) => ({
   root: {},
   media: {
@@ -46,9 +44,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#dd33fa",
   },
 }));
-
+//-----------------component ReportDetail-------------------------
 function ReportDetail(props) {
-  let arrComments = ["awsome", "bad news", "so sad", "my heart is with you"];
   const [user] = useContext(UserContext);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -167,7 +164,7 @@ function ReportDetail(props) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <hr></hr>
-
+          {/* Comments components - AddComponent */}
           <Typography paragraph>
             {user ? (
               <AddComment id={report._id} setReport={setReport} />
