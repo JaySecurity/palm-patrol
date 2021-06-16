@@ -10,9 +10,9 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import WorkIcon from '@material-ui/icons/Work';
 import { Link } from 'react-router-dom';
-import './EventCategories.css';
+import './ReportCategories.css';
 
-export default function EventCategories() {
+export default function ReportCategories() {
   return (
     <List className='categoryItem'>
       <Link to={{ pathname: '/report/add/detail', category: 'Accident' }}>

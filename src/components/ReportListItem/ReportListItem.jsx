@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function EventListItem({ report }) {
+function ReportListItem({ report }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -69,4 +69,4 @@ function EventListItem({ report }) {
   );
 }
 
-export default EventListItem;
+export default ReportListItem;

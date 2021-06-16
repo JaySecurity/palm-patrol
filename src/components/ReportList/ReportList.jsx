@@ -1,17 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import EventListItem from '../EventListItem/EventListItem';
-function EventList({ reports }) {
+import ReportListItem from '../ReportListItem/ReportListItem';
+function ReportList({ reports }) {
   return (
     <div>
       <h1>Recent Reports</h1>
       {reports.map((report) => (
         <Link key={report._id} to={`/report/${report._id}`}>
-          <EventListItem report={report} />
+          <ReportListItem report={report} />
         </Link>
       ))}
     </div>
   );
 }
 
-export default EventList;
+export default ReportList;

@@ -2,9 +2,9 @@
 
 import { BrowserRouter as Browser, Route, Switch } from 'react-router-dom';
 import './App.css';
-import AddEvent from './components/AddEvent/AddEvent';
-import EventCategories from './components/EventCategories/EventCategories';
-import EventDetail from './components/EventDetail/EventDetail';
+import ReportForm from './components/ReportForm/ReportForm';
+import ReportCategories from './components/ReportCategories/ReportCategories';
+import ReportDetail from './components/ReportDetail/ReportDetail';
 import Header from './components/Header/Header';
 import Login from './components/Login/Login';
 import Nav from './components/Nav/Nav';
@@ -22,15 +22,15 @@ function App() {
             <Route path='/signup' render={(props) => <SignUp {...props} />} />
             <Route
               path='/report/add/detail'
-              render={(props) => <AddEvent {...props} />}
+              render={(props) => <ReportForm {...props} />}
             />
             <Route
               path='/report/add'
-              render={(props) => <EventCategories {...props} />}
+              render={(props) => <ReportCategories {...props} />}
             />
             <Route
               path='/report/:id'
-              render={(props) => <EventDetail {...props} />}
+              render={(props) => <ReportDetail {...props} />}
             />
             <Route path='/' exact render={(props) => <ReportsPage />} />
           </Switch>
