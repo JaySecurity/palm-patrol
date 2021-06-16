@@ -1,6 +1,6 @@
 import { Icon } from 'leaflet';
 //import { OpenStreetMapProvider } from 'leaflet-geosearch';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 
 function Leaflet({ setBounds, markers }) {
@@ -9,22 +9,6 @@ function Leaflet({ setBounds, markers }) {
     iconUrl: '/images/red-pin.png',
     iconSize: [40, 50],
   });
-
-  // temporary test code
-  // const provider = new OpenStreetMapProvider({
-  //   params: {
-  //     email: 'jasonnicholls1981@gmail.com',
-  //     'accept-language': 'en',
-  //     countrycodes: 'ca',
-  //   },
-  // });
-  // async function handleSearch() {
-  //   let result = await provider.search({ query: address });
-  //   result = result[0];
-  //   const lat = result.y;
-  //   const long = result.x;
-  //   setMarkers([...markers, [lat, long]]);
-  // }
 
   const handleMove = () => {
     const mapBounds = mapRef.current.leafletElement.getBounds();
