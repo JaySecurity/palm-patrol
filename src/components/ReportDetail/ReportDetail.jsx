@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-
+//---------------------material--------
 import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -9,18 +9,21 @@ import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
 import CommentIcon from '@material-ui/icons/Comment';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+//-----------------react----------------------------
 import axios from 'axios';
 import clsx from 'clsx';
 import React, { useContext, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+//-----------------components-----------------------
 import { UserContext } from '../../context/UserContext';
+import AddComment from '../AddComment/AddComment';
 import Comments from '../Comments/Comments';
 import ImageCarousel from '../ImageCarousel/ImageCarousel';
 import Spinner from '../Spinner/Spinner';
+//----------style----------------------------
 const useStyles = makeStyles((theme) => ({
   root: {},
   media: {
@@ -41,9 +44,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#dd33fa',
   },
 }));
-
+//-----------------component ReportDetail-------------------------
 function ReportDetail(props) {
-  let arrComments = ['awsome', 'bad news', 'so sad', 'my heart is with you'];
   const [user] = useContext(UserContext);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -62,6 +64,7 @@ function ReportDetail(props) {
     },
     description: '',
     photos: [],
+    comments: [],
   });
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -161,11 +164,19 @@ function ReportDetail(props) {
       <Collapse in={expanded} timeout='auto' unmountOnExit>
         <CardContent>
           <hr></hr>
-
+          {/* Comments components - AddComponent */}
           <Typography paragraph>
-            <AddBoxOutlinedIcon id='add-comment-icon' />
-            {arrComments.map((comment) => (
-              <Comments comment={comment} />
+            {user ? (
+              <AddComment id={report._id} setReport={setReport} />
+            ) : (
+              <Typography paragraph>
+                {' '}
+                please<Link to='/login'>Login</Link> to add comments{' '}
+              </Typography>
+            )}
+
+            {report.comments.map((comment, i) => (
+              <Comments comment={comment} key={i} />
             ))}
           </Typography>
         </CardContent>
