@@ -1,7 +1,7 @@
 import AddAlarmIcon from '@material-ui/icons/AddAlarm';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HomeIcon from '@material-ui/icons/Home';
-import ViewListIcon from '@material-ui/icons/ViewList';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import React, { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext.js';
@@ -40,13 +40,13 @@ function Nav() {
             )}
           </div>
           <div id='i-3'>
-            <Link to='/reports'>
-              <ViewListIcon /> <p>Events</p>
+            <Link to='/profile'>
+              <AccountCircleIcon /> <p>Profile</p>
             </Link>
           </div>
           <div id='i-4'>
             <Link to='/report/add'>
-              <AddAlarmIcon /> <p>New Event</p>
+              <AddAlarmIcon /> <p>New Report</p>
             </Link>
           </div>
         </footer>

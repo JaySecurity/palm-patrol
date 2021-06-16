@@ -1,7 +1,6 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import EventListItem from "../EventListItem/EventListItem";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import EventListItem from '../EventListItem/EventListItem';
 function EventList({ reports }) {
   return (
     <div>
