@@ -8,9 +8,9 @@ import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import Spinner from '../Spinner/Spinner';
 import Uploader from '../Uploader/Uploader';
-import './AddEvent.css';
+import './ReportForm.css';
 
-function AddEvent(props) {
+function ReportForm(props) {
   //const [location, setLocation] = useState('');
   const [user] = useContext(UserContext);
   const [files, setFiles] = useState([]);
@@ -107,7 +107,7 @@ function AddEvent(props) {
   };
 
   return (
-    <div className='AddEvent'>
+    <div className='ReportForm'>
       {isLoading && <Spinner />}
       <h1>Add a {report.category} Report</h1>
       <div className='add-form'>
@@ -174,4 +174,4 @@ function AddEvent(props) {
   );
 }
 
-export default AddEvent;
+export default ReportForm;

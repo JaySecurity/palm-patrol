@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
-import EventList from '../../components/EventList/EventList';
+import EventList from '../../components/ReportList/ReportList';
 import Leaflet from '../../components/Map/Map';
 import axios from 'axios';
 import './ReportsPage.css';

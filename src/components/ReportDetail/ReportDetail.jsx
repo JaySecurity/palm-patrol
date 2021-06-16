@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function EventDetail(props) {
+function ReportDetail(props) {
   const [user] = useContext(UserContext);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -167,4 +167,4 @@ function EventDetail(props) {
   );
 }
 
-export default EventDetail;
+export default ReportDetail;
