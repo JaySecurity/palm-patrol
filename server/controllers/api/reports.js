@@ -87,15 +87,17 @@ async function deleteOne(req, res) {
 
 async function addComment(req, res) {
   try {
-    const report = await Report.findById(req.params.id)
-      .populate('user')
-      .populate('comments.user')
-      .exec();
+    let report = await Report.findById(req.params.id);
+    console.log(report);
     if (!report) {
       return res.status(404).json({ msg: 'report not found' });
     }
-    report.comments.push(req.body);
-    report.save();
+    await report.comments.push(req.body);
+    await report.save();
+    report = await Report.findById(report._id)
+      .populate('comments.user')
+      .populate('user')
+      .exec();
     res.status(201).json(report);
   } catch (err) {
     console.log(err);
