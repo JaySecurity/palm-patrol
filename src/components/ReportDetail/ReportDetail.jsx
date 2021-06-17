@@ -9,7 +9,6 @@ import Collapse from "@material-ui/core/Collapse";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import CommentIcon from "@material-ui/icons/Comment";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
@@ -118,12 +117,10 @@ function ReportDetail(props) {
       {isLoading && <Spinner />}
       <CardHeader
         avatar={
-
-          <Avatar aria-label='recipe' className={classes.avatar}>
+          <Avatar aria-label="recipe" className={classes.avatar}>
             {report.user.firstName
               ? `${report.user.firstName[0]}${report.user.lastName[0]}`
               : null}
-
           </Avatar>
         }
         title={report.title}
@@ -140,7 +137,7 @@ function ReportDetail(props) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        {user && user._id === report.user ? (
+        {user && user._id === report.user._id ? (
           <>
             <IconButton aria-label="share">
               <EditIcon />
@@ -175,10 +172,9 @@ function ReportDetail(props) {
             <AddComment id={report._id} setReport={setReport} />
           ) : (
             <Typography paragraph>
-              Please <Link to='/login'>Login</Link> to add comments
+              Please <Link to="/login">Login</Link> to add comments
             </Typography>
           )}
-
 
           {report.comments.map((comment, i) => (
             <Comments comment={comment} key={i} />
