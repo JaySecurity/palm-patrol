@@ -5,21 +5,20 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import ReportForm from '../../components/ReportForm/ReportForm';
 import Spinner from '../../components/Spinner/Spinner';
-import Uploader from '../../components/Uploader/Uploader';
 import { UserContext } from '../../context/UserContext';
-import './AddReportPage.css';
+import './EditReportPage.css';
 
-function AddReportPage(props) {
+function EditReportPage(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [user] = useContext(UserContext);
   const history = useHistory();
-  const [files, setFiles] = useState([]);
+  // const [files, setFiles] = useState([]);
   const [report, setReport] = useState({
     user: user._id,
     title: '',
     incidentDate: '',
     incidentTime: '',
-    category: props.location.category,
+    category: '',
     location: {
       address: '',
       lat: 0,
@@ -28,44 +27,53 @@ function AddReportPage(props) {
     description: '',
     photos: [],
   });
+
   useEffect(() => {
-    if (!user._id) history.push('/login');
+    if (!user) history.push('/login');
   });
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(async () => {
+    setIsLoading(true);
+    try {
+      const res = await axios.get(`/api/reports/${props.match.params.id}`);
+      res.data.incidentDate = new Date(res.data.incidentDate)
+        .toISOString()
+        .slice(0, 10);
+      await setReport(res.data);
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+      console.log(err);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    const data = new FormData();
-    files.map((file, i) => data.append(`files`, file));
-    data.append('report', JSON.stringify(report));
-
     try {
       let token = localStorage.getItem('token');
-      const res = await axios.post('/api/reports/', data, {
+      const res = await axios.put(`/api/reports/${report._id}`, report, {
         headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: token,
+          'Content-Type': 'application/json',
+          Authoization: token,
         },
       });
-      if (res.status === 201) {
-        setIsLoading(false);
-        history.push('/');
-      }
+      history.push(`/report/${report._id}`);
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <div className='AddReportPage'>
+    <div className='EditReportPage'>
       {isLoading && <Spinner />}
-      <h1>Add a {report.category} Report</h1>
+      <h1>Edit Report</h1>
       <ReportForm
         report={report}
         setReport={setReport}
         setIsLoading={setIsLoading}
       />
-      <Uploader files={files} setFiles={setFiles} />
       <Button
         variant='contained'
         color='primary'
@@ -80,4 +88,4 @@ function AddReportPage(props) {
   );
 }
 
-export default AddReportPage;
+export default EditReportPage;

@@ -1,47 +1,47 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 //---------------------material--------
-import Avatar from "@material-ui/core/Avatar";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardHeader from "@material-ui/core/CardHeader";
-import Collapse from "@material-ui/core/Collapse";
-import IconButton from "@material-ui/core/IconButton";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import CommentIcon from "@material-ui/icons/Comment";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
+import Avatar from '@material-ui/core/Avatar';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardHeader from '@material-ui/core/CardHeader';
+import Collapse from '@material-ui/core/Collapse';
+import IconButton from '@material-ui/core/IconButton';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import CommentIcon from '@material-ui/icons/Comment';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 //-----------------react----------------------------
-import axios from "axios";
-import clsx from "clsx";
-import React, { useContext, useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import axios from 'axios';
+import clsx from 'clsx';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 //-----------------components-----------------------
-import { UserContext } from "../../context/UserContext";
-import AddComment from "../AddComment/AddComment";
-import Comments from "../Comments/Comments";
-import ImageCarousel from "../ImageCarousel/ImageCarousel";
-import Spinner from "../Spinner/Spinner";
+import { UserContext } from '../../context/UserContext';
+import AddComment from '../AddComment/AddComment';
+import Comments from '../Comments/Comments';
+import ImageCarousel from '../ImageCarousel/ImageCarousel';
+import Spinner from '../Spinner/Spinner';
 //----------style----------------------------
 const useStyles = makeStyles((theme) => ({
   root: {},
   media: {
     height: 0,
-    paddingTop: "56.25%", // 16:9
+    paddingTop: '56.25%', // 16:9
   },
   expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
   },
   expandOpen: {
-    transform: "rotate(180deg)",
+    transform: 'rotate(180deg)',
   },
   avatar: {
-    backgroundColor: "#dd33fa",
+    backgroundColor: '#dd33fa',
   },
 }));
 //-----------------component ReportDetail-------------------------
@@ -53,16 +53,16 @@ function ReportDetail(props) {
   const history = useHistory();
   const [photos, setPhotos] = useState([]);
   const [report, setReport] = useState({
-    user: "",
-    title: "",
-    incidentData: "",
-    category: "",
+    user: '',
+    title: '',
+    incidentData: '',
+    category: '',
     location: {
-      address: "",
+      address: '',
       lat: 0,
       long: 0,
     },
-    description: "",
+    description: '',
     photos: [],
     comments: [],
   });
@@ -74,7 +74,6 @@ function ReportDetail(props) {
       const res = await axios.get(`/api/reports/${props.match.params.id}`);
       await setReport(res.data);
       setIsLoading(false);
-      console.log(res.data);
     } catch (err) {
       setIsLoading(false);
       console.log(err);
@@ -98,15 +97,15 @@ function ReportDetail(props) {
   const handleDelete = async (id) => {
     setIsLoading(true);
     try {
-      let token = localStorage.getItem("token");
+      let token = localStorage.getItem('token');
       await axios.delete(`/api/reports/${id}`, {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: token,
         },
       });
       setIsLoading(false);
-      history.push("/");
+      history.push('/');
     } catch (err) {
       setIsLoading(false);
       console.log(err);
@@ -118,33 +117,33 @@ function ReportDetail(props) {
       {isLoading && <Spinner />}
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
+          <Avatar aria-label='recipe' className={classes.avatar}>
             {report.user.firstName
               ? `${report.user.firstName[0]}${report.user.lastName[0]}`
               : null}
           </Avatar>
         }
         title={report.title}
-        subheader={`${new Date(
-          report.incidentData
-        ).toLocaleDateString()} - ${new Date(
-          report.incidentData
-        ).toLocaleTimeString()}`}
+        subheader={`${new Date(report.incidentDate).toLocaleDateString()} - ${
+          report.incidentTime
+        }`}
       />
       {photos.length ? <ImageCarousel photos={photos} /> : null}
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography variant='body2' color='textSecondary' component='p'>
           {report.description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
         {user && user._id === report.user._id ? (
           <>
-            <IconButton aria-label="share">
-              <EditIcon />
-            </IconButton>
+            <Link to={`/report/edit/${report._id}`}>
+              <IconButton aria-label='share'>
+                <EditIcon />
+              </IconButton>
+            </Link>
             <IconButton
-              aria-label="share"
+              aria-label='share'
               onClick={() => {
                 handleDelete(report._id);
               }}
@@ -159,12 +158,12 @@ function ReportDetail(props) {
           })}
           onClick={handleExpandClick}
           aria-expanded={expanded}
-          aria-label="show more"
+          aria-label='show more'
         >
           <CommentIcon />
         </IconButton>
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+      <Collapse in={expanded} timeout='auto' unmountOnExit>
         <CardContent>
           {/* Comments components - AddComponent */}
 
@@ -172,7 +171,7 @@ function ReportDetail(props) {
             <AddComment id={report._id} setReport={setReport} />
           ) : (
             <Typography paragraph>
-              Please <Link to="/login">Login</Link> to add comments
+              Please <Link to='/login'>Login</Link> to add comments
             </Typography>
           )}
 

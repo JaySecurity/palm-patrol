@@ -1,14 +1,14 @@
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import axios from "axios";
-import React, { useContext, useState } from "react";
-import { UserContext } from "../../context/UserContext";
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import axios from 'axios';
+import React, { useContext, useState } from 'react';
+import { UserContext } from '../../context/UserContext';
 
 function AddComment({ id, setReport }) {
   const [user] = useContext(UserContext);
   const [commentData, setCommentData] = useState({
     user: user._id,
-    description: "",
+    description: '',
   });
 
   const handleChange = (e) => {
@@ -19,46 +19,46 @@ function AddComment({ id, setReport }) {
     e.preventDefault();
     if (!commentData.description) return;
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem('token');
       const res = await axios.post(`/api/reports/${id}/comments`, commentData, {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: token,
         },
       });
       setReport(res.data);
-      setCommentData({ ...commentData, description: "" });
+      setCommentData({ ...commentData, description: '' });
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <div className="AddComment">
-      <form className="AddComment-form" onSubmit={handleSubmit}>
-        <div id="textbox">
+    <div className='AddComment'>
+      <form className='AddComment-form' onSubmit={handleSubmit}>
+        <div id='textbox'>
           <TextField
-            className="form-group"
+            className='form-group'
             required
-            id="description"
-            name="description"
+            id='description'
+            name='description'
             multiline
             rows={2}
             value={commentData.description}
-            placeholder="  write you comment here"
-            id="outlined-basic"
+            placeholder='Enter Comment...'
             style={{
-              backgroundColor: "#eaeaf3",
-              width: "100%",
-              borderRadius: "7px",
+              backgroundColor: '#eaeaf3',
+              padding: 5,
+              width: '100%',
+              borderRadius: '7px',
             }}
             onChange={handleChange}
           />
         </div>
         <Button
-          variant="contained"
-          color="primary"
-          size="small"
+          variant='contained'
+          color='primary'
+          size='small'
           onClick={handleSubmit}
         >
           Add comment

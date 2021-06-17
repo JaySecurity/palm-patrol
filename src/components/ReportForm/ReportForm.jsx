@@ -33,7 +33,6 @@ function ReportForm({ report, setReport, setIsLoading }) {
     let update = report;
     nestedObjectGetUpdate(update, e.target.name, e.target.value);
     setReport({ ...report, ...update });
-    //setReport({ ...report, [e.target.name]: e.target.value });
   };
 
   const handleAddress = async () => {
@@ -79,11 +78,24 @@ function ReportForm({ report, setReport, setIsLoading }) {
           <TextField
             className='form-group'
             required
-            id='incidentData'
-            name='incidentData'
-            label='Date / Time of Incident'
-            type='datetime-local'
-            defaultValue={report.incidentData}
+            id='incidentDate'
+            name='incidentDate'
+            label='Date of Incident'
+            type='date'
+            value={report.incidentDate}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={handleChange}
+          />
+          <TextField
+            className='form-group'
+            required
+            id='incidentTime'
+            name='incidentTime'
+            label='Time of Incident'
+            type='Time'
+            value={report.incidentTime}
             InputLabelProps={{
               shrink: true,
             }}

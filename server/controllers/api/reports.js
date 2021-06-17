@@ -1,18 +1,18 @@
-const Report = require("../../models/Report");
-const { uploadToS3, deleteS3File } = require("../../utils/awsUtils");
+const Report = require('../../models/Report');
+const { uploadToS3, deleteS3File } = require('../../utils/awsUtils');
 
 async function allOnMap(req, res) {
   const { minLat, maxLat, minLong, maxLong } = req.query;
   try {
     const reports = await Report.find({})
-      .where("location.lat")
+      .where('location.lat')
       .gt(minLat)
       .lt(maxLat)
-      .where("location.long")
+      .where('location.long')
       .gt(minLong)
       .lt(maxLong)
-      .sort("-createdAt")
-      .populate("user")
+      .sort('-createdAt')
+      .populate('user')
       .exec();
 
     res.status(200).json(reports);
@@ -56,16 +56,16 @@ async function create(req, res) {
 async function getOne(req, res) {
   try {
     const report = await Report.findById(req.params.id)
-      .populate("comments.user")
-      .populate("user")
+      .populate('comments.user')
+      .populate('user')
       .exec();
     if (!report) {
-      return res.status(404).json({ msg: "Report Not Found" });
+      return res.status(404).json({ msg: 'Report Not Found' });
     }
     res.status(200).json(report);
   } catch (err) {
     console.log(err);
-    res.status(500).json({ msg: "Something Went Wrong!", error: err });
+    res.status(500).json({ msg: 'Something Went Wrong!', error: err });
   }
 }
 
@@ -79,7 +79,7 @@ async function deleteOne(req, res) {
     );
     await report.delete();
 
-    res.status(200).json({ msg: "Report Deleted" });
+    res.status(200).json({ msg: 'Report Deleted' });
   } catch (err) {
     console.log(err);
   }
@@ -89,7 +89,7 @@ async function addComment(req, res) {
   try {
     const report = await Report.findById(req.params.id);
     if (!report) {
-      return res.status(404).json({ msg: "report not found" });
+      return res.status(404).json({ msg: 'report not found' });
     }
     report.comments.push(req.body);
     report.save();
@@ -102,10 +102,19 @@ async function addComment(req, res) {
 async function allForUser(req, res) {
   try {
     const reports = await Report.find({ user: req.params.id })
-      .populate("user")
+      .populate('user')
       .exec();
     console.log(reports);
     res.status(200).json(reports);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function update(req, res) {
+  try {
+    const report = await Report.findByIdAndUpdate(req.params.id, req.body);
+    res.status(200).json(report);
   } catch (err) {
     console.log(err);
   }
@@ -118,4 +127,5 @@ module.exports = {
   deleteOne,
   addComment,
   allForUser,
+  update,
 };
