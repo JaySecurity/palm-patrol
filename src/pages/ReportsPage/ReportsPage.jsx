@@ -2,7 +2,7 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import Leaflet from '../../components/Map/Map';
-import EventList from '../../components/ReportList/ReportList';
+import ReportList from '../../components/ReportList/ReportList';
 import { UserContext } from '../../context/UserContext';
 import './ReportsPage.css';
 
@@ -48,7 +48,7 @@ function ReportsPage() {
   return (
     <div className='ReportsPage'>
       <Leaflet setBounds={setBounds} markers={markers} />
-      <EventList reports={reports} />
+      <ReportList reports={reports} />
     </div>
   );
 }

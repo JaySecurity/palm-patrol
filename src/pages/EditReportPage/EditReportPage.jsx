@@ -37,8 +37,9 @@ function EditReportPage(props) {
     try {
       const res = await axios.get(`/api/reports/${props.match.params.id}`);
       await setReport(res.data);
-      res.data.incidentData = new Date(res.data.incidentData).toGMTString();
-      console.log(res.data.incidentData);
+      // res.data.incidentData = new Date(res.data.incidentData).toGMTString();
+      console.log(res.data.date);
+      console.log(res.data.time);
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);

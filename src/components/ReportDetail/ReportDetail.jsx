@@ -124,11 +124,9 @@ function ReportDetail(props) {
           </Avatar>
         }
         title={report.title}
-        subheader={`${new Date(
-          report.incidentData
-        ).toLocaleDateString()} - ${new Date(
-          report.incidentData
-        ).toLocaleTimeString()}`}
+        subheader={`${new Date(report.incidentDate).toLocaleDateString()} - ${
+          report.incidentTime
+        }`}
       />
       {photos.length ? <ImageCarousel photos={photos} /> : null}
       <CardContent>

@@ -1,16 +1,14 @@
-
-import Avatar from "@material-ui/core/Avatar";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardHeader from "@material-ui/core/CardHeader";
-import Collapse from "@material-ui/core/Collapse";
-import IconButton from "@material-ui/core/IconButton";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import React from "react";
+import Avatar from '@material-ui/core/Avatar';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardHeader from '@material-ui/core/CardHeader';
+import Collapse from '@material-ui/core/Collapse';
+import IconButton from '@material-ui/core/IconButton';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import React from 'react';
 const useStyles = makeStyles((theme) => ({
   root: { width: '95%', margin: 'auto', marginBottom: '1.3vh' },
   media: {
@@ -40,10 +38,8 @@ function ReportListItem({ report }) {
     <Card className={classes.root}>
       <CardHeader
         avatar={
-
           <Avatar aria-label='recipe' className={classes.avatar}>
             {`${report.user.firstName[0]}${report.user.lastName[0]}`}
-
           </Avatar>
         }
         action={
@@ -52,11 +48,9 @@ function ReportListItem({ report }) {
           </IconButton>
         }
         title={report.title}
-        subheader={`${new Date(
-          report.incidentData
-        ).toLocaleDateString()} - ${new Date(
-          report.incidentData
-        ).toLocaleTimeString()}`}
+        subheader={`${new Date(report.incidentDate).toLocaleDateString()} - ${
+          report.incidentTime
+        }`}
       />
 
       <CardContent>

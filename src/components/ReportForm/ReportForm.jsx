@@ -79,11 +79,24 @@ function ReportForm({ report, setReport, setIsLoading }) {
           <TextField
             className='form-group'
             required
-            id='incidentData'
-            name='incidentData'
-            label='Date / Time of Incident'
-            type='datetime-local'
-            defaultValue={report.incidentData}
+            id='incidentDate'
+            name='date'
+            label='Date of Incident'
+            type='date'
+            defaultValue={report.incidentDate}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={handleChange}
+          />
+          <TextField
+            className='form-group'
+            required
+            id='incidentTime'
+            name='time'
+            label='Time of Incident'
+            type='Time'
+            defaultValue={report.incidentTime}
             InputLabelProps={{
               shrink: true,
             }}
