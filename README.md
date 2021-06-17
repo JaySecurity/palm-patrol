@@ -25,21 +25,27 @@ Users are able to see reports from community members about thefts, vandalism, lo
 ### Screenshots
 
 Landing Page
+
 ![LandingPage](/Docs/screenshots/landingPage.png)
 
 Signup
+
 ![Signup](/Docs/screenshots/signup.png)
 
 Categories
+
 ![Categories](/Docs/screenshots/categoryPage.png)
 
 Add Report
+
 ![Add Report](/Docs/screenshots/addReport.png)
 
 Report Detail
+
 ![Report Detail 1](/Docs/screenshots/reportDetail.png)
 
 Report Detail 2
+
 ![Report Detail 2](/Docs/screenshots/reportDetail2.png)
 
 [ERD](./Docs/erd.pdf)
