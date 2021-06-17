@@ -2,15 +2,14 @@
 
 import { BrowserRouter as Browser, Route, Switch } from 'react-router-dom';
 import './App.css';
-import ReportForm from './components/ReportForm/ReportForm';
-import ReportCategories from './components/ReportCategories/ReportCategories';
-import ReportDetail from './components/ReportDetail/ReportDetail';
 import Header from './components/Header/Header';
 import Login from './components/Login/Login';
 import Nav from './components/Nav/Nav';
+import ReportCategories from './components/ReportCategories/ReportCategories';
+import ReportDetail from './components/ReportDetail/ReportDetail';
 import SignUp from './components/SignUp/SignUp';
-import ReportsPage from './pages/ReportsPage/ReportsPage';
 import AddReportPage from './pages/AddReportPage/AddReportPage';
+import ReportsPage from './pages/ReportsPage/ReportsPage';
 
 function App() {
   return (

@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, useContext } from 'react';
-import { UserContext } from '../../context/UserContext';
-import EventList from '../../components/ReportList/ReportList';
-import Leaflet from '../../components/Map/Map';
 import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
+import Leaflet from '../../components/Map/Map';
+import EventList from '../../components/ReportList/ReportList';
+import { UserContext } from '../../context/UserContext';
 import './ReportsPage.css';
 
 function ReportsPage() {
@@ -29,7 +29,9 @@ function ReportsPage() {
 
   useEffect(async () => {
     try {
-      let allReports = await axios.get('/api/reports/');
+      let allReports = await axios.get('/api/reports/', {
+        params: { ...bounds },
+      });
       setReports([...allReports.data]);
     } catch (err) {}
   }, [bounds]);
