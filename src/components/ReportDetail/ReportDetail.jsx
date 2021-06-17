@@ -74,6 +74,7 @@ function ReportDetail(props) {
       const res = await axios.get(`/api/reports/${props.match.params.id}`);
       await setReport(res.data);
       setIsLoading(false);
+      console.log(res.data);
     } catch (err) {
       setIsLoading(false);
       console.log(err);
@@ -165,7 +166,6 @@ function ReportDetail(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <hr></hr>
           {/* Comments components - AddComponent */}
 
           {user ? (
