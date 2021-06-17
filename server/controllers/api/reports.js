@@ -106,7 +106,6 @@ async function allForUser(req, res) {
     const reports = await Report.find({ user: req.params.id })
       .populate('user')
       .exec();
-    console.log(reports);
     res.status(200).json(reports);
   } catch (err) {
     console.log(err);

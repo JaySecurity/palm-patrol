@@ -26,7 +26,6 @@ function AddComment({ id, setReport }) {
           Authorization: token,
         },
       });
-      console.log(res.data.comments);
       setReport(res.data);
       setCommentData({ ...commentData, description: '' });
     } catch (err) {
