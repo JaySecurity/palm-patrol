@@ -19,3 +19,7 @@ body {
   height: 20px;
   line-height: 20px;
 }
+
+a {
+  text-decoration: none;
+}
