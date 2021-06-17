@@ -88,7 +88,6 @@ async function deleteOne(req, res) {
 async function addComment(req, res) {
   try {
     let report = await Report.findById(req.params.id);
-    console.log(report);
     if (!report) {
       return res.status(404).json({ msg: 'report not found' });
     }
