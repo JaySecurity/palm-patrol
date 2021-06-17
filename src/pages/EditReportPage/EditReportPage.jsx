@@ -16,7 +16,8 @@ function EditReportPage(props) {
   const [report, setReport] = useState({
     user: user._id,
     title: '',
-    incidentData: '',
+    incidentDate: '',
+    incidentTime: '',
     category: '',
     location: {
       address: '',
@@ -36,10 +37,10 @@ function EditReportPage(props) {
     setIsLoading(true);
     try {
       const res = await axios.get(`/api/reports/${props.match.params.id}`);
+      res.data.incidentDate = new Date(res.data.incidentDate)
+        .toISOString()
+        .slice(0, 10);
       await setReport(res.data);
-      // res.data.incidentData = new Date(res.data.incidentData).toGMTString();
-      console.log(res.data.date);
-      console.log(res.data.time);
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
@@ -50,7 +51,18 @@ function EditReportPage(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    return;
+    try {
+      let token = localStorage.getItem('token');
+      const res = await axios.put(`/api/reports/${report._id}`, report, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authoization: token,
+        },
+      });
+      history.push(`/report/${report._id}`);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

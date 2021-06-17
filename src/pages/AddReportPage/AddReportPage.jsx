@@ -1,12 +1,12 @@
-import Spinner from '../../components/Spinner/Spinner';
-import Uploader from '../../components/Uploader/Uploader';
-import ReportForm from '../../components/ReportForm/ReportForm';
-import axios from 'axios';
-import { UserContext } from '../../context/UserContext';
-import React, { useContext, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import ReportForm from '../../components/ReportForm/ReportForm';
+import Spinner from '../../components/Spinner/Spinner';
+import Uploader from '../../components/Uploader/Uploader';
+import { UserContext } from '../../context/UserContext';
 import './AddReportPage.css';
 
 function AddReportPage(props) {
@@ -17,7 +17,8 @@ function AddReportPage(props) {
   const [report, setReport] = useState({
     user: user._id,
     title: '',
-    incidentData: '',
+    incidentDate: '',
+    incidentTime: '',
     category: props.location.category,
     location: {
       address: '',

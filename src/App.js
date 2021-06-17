@@ -13,6 +13,7 @@ import SignUp from './components/SignUp/SignUp';
 import { UserContext } from './context/UserContext';
 import AddReportPage from './pages/AddReportPage/AddReportPage';
 import EditReportPage from './pages/EditReportPage/EditReportPage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 import ReportsPage from './pages/ReportsPage/ReportsPage';
 
 function App() {
@@ -44,6 +45,10 @@ function App() {
             />
             <Route path='/login' render={(props) => <Login {...props} />} />
             <Route path='/signup' render={(props) => <SignUp {...props} />} />
+            <Route
+              path='/profile'
+              render={(props) => <ProfilePage {...props} />}
+            />
             <Route
               path='/report/category'
               render={(props) => <ReportCategories {...props} />}
