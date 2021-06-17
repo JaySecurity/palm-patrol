@@ -19,10 +19,12 @@ function Comments(props) {
   return (
     <div id='comments-box'>
       <div id='avatar-box'>
-        <Avatar aria-label='recipe' className={classes.avatar}>
-          {props.comment.user &&
-            `${props.comment.user.firstName[0]}${props.comment.user.lastName[0]}`}
-        </Avatar>
+        {props.comment.user ? (
+          <Avatar aria-label='recipe' className={classes.avatar}>
+            {props.comment.user &&
+              `${props.comment.user.firstName[0]}${props.comment.user.lastName[0]}`}
+          </Avatar>
+        ) : null}
       </div>
       <div id='comments-text'>{props.comment.description}</div>
     </div>

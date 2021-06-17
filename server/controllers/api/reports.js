@@ -93,7 +93,6 @@ async function addComment(req, res) {
     }
     report.comments.push(req.body);
     report.save();
-    console.log(report);
     res.status(201).json(report);
   } catch (err) {
     console.log(err);
