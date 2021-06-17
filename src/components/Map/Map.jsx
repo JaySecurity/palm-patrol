@@ -1,14 +1,24 @@
 import { Icon } from 'leaflet';
-//import { OpenStreetMapProvider } from 'leaflet-geosearch';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 
 function Leaflet({ setBounds, markers }) {
   const mapRef = useRef(null);
+  const [center, setCenter] = useState([]);
   const theftPin = new Icon({
     iconUrl: '/images/red-pin.png',
     iconSize: [40, 50],
   });
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(getCoords);
+    }
+  }, []);
+
+  const getCoords = (position) => {
+    setCenter([position.coords.latitude, position.coords.longitude]);
+  };
 
   const handleMove = () => {
     const mapBounds = mapRef.current.leafletElement.getBounds();
@@ -23,7 +33,7 @@ function Leaflet({ setBounds, markers }) {
 
   return (
     <Map
-      center={[42.88652, -79.250854]}
+      center={center[0] ? center : [42.88652, -79.250854]}
       zoom={15}
       scrollWheelZoom={true}
       ref={mapRef}
