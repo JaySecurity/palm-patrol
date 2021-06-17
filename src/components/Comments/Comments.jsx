@@ -19,7 +19,8 @@ function Comments(props) {
   return (
     <div id='comments-box'>
       <div id='avatar-box'>
-        {props.comment.user ? (
+        {console.log(props.comment.user.firstName)}
+        {props.comment.user.firstName ? (
           <Avatar aria-label='recipe' className={classes.avatar}>
             {props.comment.user.firstName &&
               `${props.comment.user.firstName[0]}${props.comment.user.lastName[0]}`}
