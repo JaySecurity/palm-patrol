@@ -1,3 +1,4 @@
+
 import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -11,23 +12,23 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import React from "react";
 const useStyles = makeStyles((theme) => ({
-  root: { width: "95%", margin: "auto", marginBottom: "1.3vh" },
+  root: { width: '95%', margin: 'auto', marginBottom: '1.3vh' },
   media: {
     height: 0,
-    paddingTop: "56.25%", // 16:9
+    paddingTop: '56.25%', // 16:9
   },
   expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
   },
   expandOpen: {
-    transform: "rotate(180deg)",
+    transform: 'rotate(180deg)',
   },
   avatar: {
-    backgroundColor: "#dd33fa",
+    backgroundColor: '#dd33fa',
   },
 }));
 
@@ -39,12 +40,14 @@ function ReportListItem({ report }) {
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            <AccountCircleIcon />
+
+          <Avatar aria-label='recipe' className={classes.avatar}>
+            {`${report.user.firstName[0]}${report.user.lastName[0]}`}
+
           </Avatar>
         }
         action={
-          <IconButton aria-label="settings">
+          <IconButton aria-label='settings'>
             <MoreVertIcon />
           </IconButton>
         }
@@ -57,12 +60,12 @@ function ReportListItem({ report }) {
       />
 
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p" noWrap>
+        <Typography variant='body2' color='textSecondary' component='p' noWrap>
           {report.description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing></CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+      <Collapse in={expanded} timeout='auto' unmountOnExit>
         <CardContent></CardContent>
       </Collapse>
     </Card>

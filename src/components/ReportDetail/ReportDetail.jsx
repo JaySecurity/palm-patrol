@@ -118,8 +118,12 @@ function ReportDetail(props) {
       {isLoading && <Spinner />}
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            <AccountCircleIcon />
+
+          <Avatar aria-label='recipe' className={classes.avatar}>
+            {report.user.firstName
+              ? `${report.user.firstName[0]}${report.user.lastName[0]}`
+              : null}
+
           </Avatar>
         }
         title={report.title}
@@ -166,20 +170,19 @@ function ReportDetail(props) {
         <CardContent>
           <hr></hr>
           {/* Comments components - AddComponent */}
-          <Typography paragraph>
-            {user ? (
-              <AddComment id={report._id} setReport={setReport} />
-            ) : (
-              <Typography paragraph>
-                {" "}
-                please <Link to="/login"> Login</Link> to add comments{" "}
-              </Typography>
-            )}
 
-            {report.comments.map((comment, i) => (
-              <Comments comment={comment} key={i} />
-            ))}
-          </Typography>
+          {user ? (
+            <AddComment id={report._id} setReport={setReport} />
+          ) : (
+            <Typography paragraph>
+              Please <Link to='/login'>Login</Link> to add comments
+            </Typography>
+          )}
+
+
+          {report.comments.map((comment, i) => (
+            <Comments comment={comment} key={i} />
+          ))}
         </CardContent>
       </Collapse>
     </Card>

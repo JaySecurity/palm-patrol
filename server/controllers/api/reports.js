@@ -1,9 +1,20 @@
-const Report = require("../../models/Report");
-const { uploadToS3, deleteS3File } = require("../../utils/awsUtils");
+const Report = require('../../models/Report');
+const { uploadToS3, deleteS3File } = require('../../utils/awsUtils');
 
 async function all(req, res) {
+  const { minLat, maxLat, minLong, maxLong } = req.query;
   try {
-    const reports = await Report.find({});
+    const reports = await Report.find({})
+      .where('location.lat')
+      .gt(minLat)
+      .lt(maxLat)
+      .where('location.long')
+      .gt(minLong)
+      .lt(maxLong)
+      .sort('-createdAt')
+      .populate('user')
+      .exec();
+
     res.status(200).json(reports);
   } catch (err) {
     console.log(err);
@@ -44,14 +55,14 @@ async function create(req, res) {
 
 async function getOne(req, res) {
   try {
-    const report = await Report.findById(req.params.id);
+    const report = await Report.findById(req.params.id).populate('user').exec();
     if (!report) {
-      return res.status(404).json({ msg: "Report Not Found" });
+      return res.status(404).json({ msg: 'Report Not Found' });
     }
     res.status(200).json(report);
   } catch (err) {
     console.log(err);
-    res.status(500).json({ msg: "Something Went Wrong!", error: err });
+    res.status(500).json({ msg: 'Something Went Wrong!', error: err });
   }
 }
 
@@ -65,7 +76,7 @@ async function deleteOne(req, res) {
     );
     await report.delete();
 
-    res.status(200).json({ msg: "Report Deleted" });
+    res.status(200).json({ msg: 'Report Deleted' });
   } catch (err) {
     console.log(err);
   }
@@ -75,7 +86,7 @@ async function addComment(req, res) {
   try {
     const report = await Report.findById(req.params.id);
     if (!report) {
-      return res.status(404).json({ msg: "report not found" });
+      return res.status(404).json({ msg: 'report not found' });
     }
     report.comments.push(req.body);
     report.save();
