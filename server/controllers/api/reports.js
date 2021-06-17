@@ -55,7 +55,10 @@ async function create(req, res) {
 
 async function getOne(req, res) {
   try {
-    const report = await Report.findById(req.params.id).populate('user').exec();
+    const report = await Report.findById(req.params.id)
+      .populate('comments.user')
+      .populate('user')
+      .exec();
     if (!report) {
       return res.status(404).json({ msg: 'Report Not Found' });
     }
