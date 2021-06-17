@@ -2,7 +2,7 @@
 
 ## Neighborhood Watch In The Palm Of Your Hand
 
-[Live on Heroku]()
+[Live on Heroku](https://palmpatrol.herokuapp.com/)
 
 Features include an easy to use map functionality, coupled with interactive user interface.
 
@@ -33,7 +33,7 @@ Users are able to see reports from community members about thefts, vandalism, lo
 
 ### Future Features:
 
-- [ ] Show reports based on map boundaries
+- [x] Show reports based on map boundaries
 - [ ] Filter reports by category
 - [ ] Allow user to update their profile, change their password
 - [ ] Add notifications for users to see if there any comments to their report.
