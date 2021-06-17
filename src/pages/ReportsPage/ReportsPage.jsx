@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
-import Leaflet from '../../components/Map/Map';
-import EventList from '../../components/ReportList/ReportList';
-import { UserContext } from '../../context/UserContext';
-import './ReportsPage.css';
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import Leaflet from "../../components/Map/Map";
+import ReportList from "../../components/ReportList/ReportList";
+import { UserContext } from "../../context/UserContext";
+import "./ReportsPage.css";
 
 function ReportsPage() {
   const [bounds, setBounds] = useState([]);
@@ -13,10 +13,10 @@ function ReportsPage() {
   const [, setUser] = useContext(UserContext);
 
   useEffect(async () => {
-    let token = localStorage.getItem('token');
+    let token = localStorage.getItem("token");
     if (token) {
       try {
-        const res = await axios.post('/api/users/verify', { token });
+        const res = await axios.post("/api/users/verify", { token });
         const validUser = res.data.decoded.user;
         setUser(validUser);
       } catch (e) {
@@ -29,7 +29,7 @@ function ReportsPage() {
 
   useEffect(async () => {
     try {
-      let allReports = await axios.get('/api/reports/', {
+      let allReports = await axios.get("/api/reports/", {
         params: { ...bounds },
       });
       setReports([...allReports.data]);
@@ -46,9 +46,9 @@ function ReportsPage() {
   }, [reports]);
 
   return (
-    <div className='ReportsPage'>
+    <div className="ReportsPage">
       <Leaflet setBounds={setBounds} markers={markers} />
-      <EventList reports={reports} />
+      <ReportList reports={reports} />
     </div>
   );
 }
