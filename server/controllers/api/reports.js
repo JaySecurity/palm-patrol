@@ -87,7 +87,10 @@ async function deleteOne(req, res) {
 
 async function addComment(req, res) {
   try {
-    const report = await Report.findById(req.params.id);
+    const report = await Report.findById(req.params.id)
+      .populate('user')
+      .populate('comments.user')
+      .exec();
     if (!report) {
       return res.status(404).json({ msg: 'report not found' });
     }

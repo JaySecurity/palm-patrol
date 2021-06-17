@@ -21,7 +21,7 @@ function Comments(props) {
       <div id='avatar-box'>
         {props.comment.user ? (
           <Avatar aria-label='recipe' className={classes.avatar}>
-            {props.comment.user &&
+            {props.comment.user.firstName &&
               `${props.comment.user.firstName[0]}${props.comment.user.lastName[0]}`}
           </Avatar>
         ) : null}
