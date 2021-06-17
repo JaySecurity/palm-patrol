@@ -18,3 +18,10 @@ h1 {
   margin-bottom: 1rem !important;
   width: 90%;
 }
+#signup-button {
+  margin-right: 2rem;
+}
+#div-buttons {
+  display: flex;
+  justify-content: space-between;
+}

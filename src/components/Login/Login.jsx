@@ -64,27 +64,29 @@ function Login(props) {
           label="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button
-          variant="contained"
-          color="primary"
-          size="small"
-          id="login-button"
-          endIcon={<ExitToApp />}
-          onClick={handleSubmit}
-        >
-          Login
-        </Button>
-        <Link to="/signup">
+        <div id="div-buttons">
           <Button
             variant="contained"
             color="primary"
             size="small"
             id="login-button"
-            endIcon={<CreateIcon />}
+            endIcon={<ExitToApp />}
+            onClick={handleSubmit}
           >
-            Sign Up
+            Login
           </Button>
-        </Link>
+          <Link to="/signup">
+            <Button
+              variant="contained"
+              color="primary"
+              size="small"
+              id="signup-button"
+              endIcon={<CreateIcon />}
+            >
+              Sign Up
+            </Button>
+          </Link>
+        </div>
       </form>
     </div>
   );
