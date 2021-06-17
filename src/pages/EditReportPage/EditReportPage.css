@@ -1,0 +1,12 @@
+.EditReportPage {
+  display: flex;
+  position: relative;
+  height: 100%;
+  overflow-y: visible;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  margin: 1rem;
+}
