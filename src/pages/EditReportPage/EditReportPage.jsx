@@ -7,6 +7,7 @@ import ReportForm from '../../components/ReportForm/ReportForm';
 import Spinner from '../../components/Spinner/Spinner';
 import { UserContext } from '../../context/UserContext';
 import './EditReportPage.css';
+import PhotoGallery from '../../components/PhotoGallery/PhotoGallery';
 
 function EditReportPage(props) {
   const [isLoading, setIsLoading] = useState(false);
@@ -74,6 +75,7 @@ function EditReportPage(props) {
         setReport={setReport}
         setIsLoading={setIsLoading}
       />
+      <PhotoGallery photos={report.photos} />
       <Button
         variant='contained'
         color='primary'
