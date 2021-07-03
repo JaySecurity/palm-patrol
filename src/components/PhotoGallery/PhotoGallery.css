@@ -1,15 +1,19 @@
 .PhotoGallery {
   width: 90%;
   max-width: 700px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
+
   padding: 1rem;
   border: 1px solid rgba(0, 0, 0, 0.8);
   border-radius: 8px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
   margin-bottom: 2rem;
+}
+
+.photos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .thumbnail {

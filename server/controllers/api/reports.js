@@ -122,6 +122,43 @@ async function update(req, res) {
   }
 }
 
+async function deletePhoto(req, res) {
+  try {
+    const report = await Report.findOne({})
+      .where('photos._id')
+      .eq(req.params.id)
+      .exec();
+    if (!report) return res.sendStatus(404);
+    const photo = report.photos.filter(
+      (photo) => photo._id == req.params.id
+    )[0];
+    await deleteS3File(photo.key);
+    report.photos = report.photos.filter((photo) => photo._id != req.params.id);
+    report.save();
+    res.status(200).json(report.photos);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function addPhoto(req, res) {
+  try {
+    const report = await Report.findById(req.params.id);
+    if (!report) return res.status(404).json({ msg: 'Report Not Found' });
+    if (req.files) {
+      let imgData = await uploadToS3(req.files.file);
+      await report.photos.push({
+        key: imgData.Key,
+        url: imgData.Location,
+      });
+      await report.save();
+      res.status(201).json(report.photos);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 module.exports = {
   allOnMap,
   create,
@@ -130,4 +167,6 @@ module.exports = {
   addComment,
   allForUser,
   update,
+  deletePhoto,
+  addPhoto,
 };

@@ -75,7 +75,7 @@ function EditReportPage(props) {
         setReport={setReport}
         setIsLoading={setIsLoading}
       />
-      <PhotoGallery photos={report.photos} />
+      <PhotoGallery photos={report.photos} report={report._id} />
       <Button
         variant='contained'
         color='primary'
