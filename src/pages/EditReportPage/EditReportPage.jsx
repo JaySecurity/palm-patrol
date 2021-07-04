@@ -14,6 +14,10 @@ function EditReportPage(props) {
   const [user] = useContext(UserContext);
   const history = useHistory();
   // const [files, setFiles] = useState([]);
+  useEffect(() => {
+    if (!user) history.push('/login');
+  });
+
   const [report, setReport] = useState({
     user: user._id,
     title: '',
@@ -27,10 +31,6 @@ function EditReportPage(props) {
     },
     description: '',
     photos: [],
-  });
-
-  useEffect(() => {
-    if (!user) history.push('/login');
   });
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -75,7 +75,12 @@ function EditReportPage(props) {
         setReport={setReport}
         setIsLoading={setIsLoading}
       />
-      <PhotoGallery photos={report.photos} report={report._id} />
+      <PhotoGallery
+        photos={report.photos}
+        report={report}
+        setReport={setReport}
+        setIsLoading={setIsLoading}
+      />
       <Button
         variant='contained'
         color='primary'

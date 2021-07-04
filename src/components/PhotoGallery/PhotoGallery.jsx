@@ -25,6 +25,7 @@ export default function PhotoGallery(props) {
       });
       if (res.status === 200) {
         setPhotos(res.data);
+        props.setReport({ ...props.report, photos: res.data });
       }
     } catch (err) {
       console.log(err);
@@ -32,6 +33,7 @@ export default function PhotoGallery(props) {
   };
 
   const handleAdd = async (e) => {
+    props.setIsLoading(true);
     e.preventDefault();
     console.log(e.target.files.length, 'before');
     if (e.target.files.length !== 1) return;
@@ -41,7 +43,7 @@ export default function PhotoGallery(props) {
     try {
       let token = localStorage.getItem('token');
       const res = await axios.post(
-        `/api/reports/${props.report}/photos`,
+        `/api/reports/${props.report._id}/photos`,
         data,
         {
           headers: {
@@ -52,10 +54,12 @@ export default function PhotoGallery(props) {
       );
       if (res.status === 201) {
         setPhotos(res.data);
+        props.setReport({ ...props.report, photos: res.data });
       }
     } catch (err) {
       console.log(err);
     }
+    props.setIsLoading(false);
   };
 
   return (
