@@ -28,8 +28,6 @@ function App() {
       } catch (e) {
         setUser(null);
       }
-    } else {
-      setUser(null);
     }
   }, []);
 
@@ -41,7 +39,7 @@ function App() {
           <Switch>
             <Route
               path='/report/edit/:id'
-              render={(props) => <EditReportPage {...props} />}
+              render={(props) => user && <EditReportPage {...props} />}
             />
             <Route path='/login' render={(props) => <Login {...props} />} />
             <Route path='/signup' render={(props) => <SignUp {...props} />} />
@@ -55,7 +53,7 @@ function App() {
             />
             <Route
               path='/report/add'
-              render={(props) => <AddReportPage {...props} />}
+              render={(props) => user && <AddReportPage {...props} />}
             />
             <Route
               path='/report/:id'

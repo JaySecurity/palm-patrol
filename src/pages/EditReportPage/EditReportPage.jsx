@@ -19,7 +19,7 @@ function EditReportPage(props) {
   });
 
   const [report, setReport] = useState({
-    user: user._id,
+    user: '',
     title: '',
     incidentDate: '',
     incidentTime: '',
@@ -44,9 +44,9 @@ function EditReportPage(props) {
       await setReport(res.data);
       setIsLoading(false);
     } catch (err) {
-      setIsLoading(false);
       console.log(err);
     }
+    setIsLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -54,7 +54,7 @@ function EditReportPage(props) {
     e.preventDefault();
     try {
       let token = localStorage.getItem('token');
-      const res = await axios.put(`/api/reports/${report._id}`, report, {
+      await axios.put(`/api/reports/${report._id}`, report, {
         headers: {
           'Content-Type': 'application/json',
           Authoization: token,

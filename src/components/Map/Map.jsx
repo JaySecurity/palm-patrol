@@ -15,6 +15,7 @@ function Leaflet({ setBounds, markers }) {
       navigator.geolocation.getCurrentPosition(getCoords);
     }
     handleMove();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getCoords = (position) => {

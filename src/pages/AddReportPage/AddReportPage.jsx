@@ -28,8 +28,10 @@ function AddReportPage(props) {
     description: '',
     photos: [],
   });
+
   useEffect(() => {
     if (!user._id) history.push('/login');
+    if (!props.location.category) history.push('/report/category');
   });
 
   const handleSubmit = async (e) => {
