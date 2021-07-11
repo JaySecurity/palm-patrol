@@ -7,14 +7,19 @@ import ReportForm from '../../components/ReportForm/ReportForm';
 import Spinner from '../../components/Spinner/Spinner';
 import { UserContext } from '../../context/UserContext';
 import './EditReportPage.css';
+import PhotoGallery from '../../components/PhotoGallery/PhotoGallery';
 
 function EditReportPage(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [user] = useContext(UserContext);
   const history = useHistory();
   // const [files, setFiles] = useState([]);
+  useEffect(() => {
+    if (!user) history.push('/login');
+  });
+
   const [report, setReport] = useState({
-    user: user._id,
+    user: '',
     title: '',
     incidentDate: '',
     incidentTime: '',
@@ -28,10 +33,6 @@ function EditReportPage(props) {
     photos: [],
   });
 
-  useEffect(() => {
-    if (!user) history.push('/login');
-  });
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     setIsLoading(true);
@@ -43,9 +44,9 @@ function EditReportPage(props) {
       await setReport(res.data);
       setIsLoading(false);
     } catch (err) {
-      setIsLoading(false);
       console.log(err);
     }
+    setIsLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -53,7 +54,7 @@ function EditReportPage(props) {
     e.preventDefault();
     try {
       let token = localStorage.getItem('token');
-      const res = await axios.put(`/api/reports/${report._id}`, report, {
+      await axios.put(`/api/reports/${report._id}`, report, {
         headers: {
           'Content-Type': 'application/json',
           Authoization: token,
@@ -70,6 +71,12 @@ function EditReportPage(props) {
       {isLoading && <Spinner />}
       <h1>Edit Report</h1>
       <ReportForm
+        report={report}
+        setReport={setReport}
+        setIsLoading={setIsLoading}
+      />
+      <PhotoGallery
+        photos={report.photos}
         report={report}
         setReport={setReport}
         setIsLoading={setIsLoading}

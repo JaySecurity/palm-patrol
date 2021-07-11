@@ -41,7 +41,7 @@ async function login(req, res) {
     if (!(await bcrypt.compare(req.body.password, user.password)))
       return res.status(400).json({ msg: 'Invalid Email or Password' });
     const token = jwt.sign({ user }, JWT_SECRET, { expiresIn: '10h' });
-    res.status(200).json(token);
+    res.status(200).json({ token, user });
   } catch (err) {
     console.log(err.message);
     res

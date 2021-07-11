@@ -1,0 +1,48 @@
+.PhotoGallery {
+  width: 90%;
+  max-width: 700px;
+
+  padding: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
+  margin-bottom: 2rem;
+}
+
+.photos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.thumbnail {
+  max-width: 200px;
+  max-height: 250px;
+  margin: 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px -1px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.thumbnail img {
+  max-width: 195px;
+  max-height: 200px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.control {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+@media screen and (max-width: 500px) {
+  .PhotoGallery {
+    flex-direction: column;
+    align-items: center;
+  }
+}
